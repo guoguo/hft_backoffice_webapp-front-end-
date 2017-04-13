@@ -1,0 +1,106 @@
+<div class="s-home bkd-m">
+	<div class="d-p-up">
+		<div class="d-p-rs" ng-show="params.userinfoFlag">
+			<div class="d-p-rs-t">
+				<span>UID</span>
+				<span>真实姓名</span>
+				<span>用户级别</span>
+				<span>手机号码</span>
+				<span>邮箱</span>
+			</div>
+			<div class="d-p-rs-t d-p-rs-d">
+				<span>{{params.userInfo.id}}</span>
+				<span>{{params.userInfo.phone}}</span>
+				<span>{{params.userInfo.vip_level}}</span>
+				<span>{{params.userInfo.phone}}</span>
+				<span>{{params.userInfo.email}}</span>
+				<div class="d-p-rs-cz">
+					<a>详情</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="bkd-dn">
+		<div class="bkd-dn-t" ng-if="params.tranferInfo.is_currency==='DEPOSIT'">
+			充值详情
+		</div>
+		<div class="bkd-dn-t" ng-if="params.tranferInfo.is_currency==='WITHDRAWAL'">
+			提现详情
+		</div>
+		<div class="bkd-dn-ct-m">
+			<div class="bkd-dn-ct">
+				<label>任务</label>
+				<span>UID {{params.tranferInfo.customer_user_id}} - {{params.tranferInfo.is_currency}}</span>
+			</div>
+			<div class="bkd-dn-ct">
+				<label>交易ID</label>
+				<span>{{params.tranferInfo.transefer_id}}</span>
+			</div>
+			<div class="bkd-dn-ct">
+				<label>时间</label>
+				<span>{{params.tranferInfo.create_time | date:"yyyy-MM-dd hh:mm:ss"}}</span>
+			</div>
+			<div class="bkd-dn-ct" ng-if="params.tranferInfo.assign_role_id===3">
+				<label>当前节点</label>
+				<span>管理员</span>
+			</div>
+			<div class="bkd-dn-ct" ng-if="params.tranferInfo.assign_role_id===2">
+				<label>当前节点</label>
+				<span>一级主管</span>
+			</div>
+			<div class="bkd-dn-ct" ng-if="params.tranferInfo.assign_role_id===1">
+				<label>当前节点</label>
+				<span>二级主管</span>
+			</div>
+			<div class="bkd-dn-ct" ng-if="params.tranferInfo.assign_role_id===0">
+				<label>当前节点</label>
+				<span>普通操作员</span>
+			</div>
+			
+			<div class="bkd-dn-ct" ng-if="params.tranferInfo.show_user_status===0">
+				<label>状态</label>
+				<span>已成功</span>
+			</div>
+			<div class="bkd-dn-ct" ng-if="params.tranferInfo.show_user_status===1">
+				<label>状态</label>
+				<span class="progress">进行中</span>
+			</div>
+			<div class="bkd-dn-ct" ng-if="params.tranferInfo.show_user_status===-1">
+				<label>状态</label>
+				<span class="cal">已拒绝</span>
+			</div>
+			<div class="bkd-dn-ct">
+				<label>金额</label>
+				<span>{{params.tranferInfo.amount}}</span>
+			</div>
+			<div class="bkd-dn-ct">
+				<label>账号</label>
+				<span>{{params.tranferInfo.address}}</span>
+			</div>
+		</div>
+		<div class="bkd-dn-cz" >
+			<div class="bkd-dn-cz01" ng-show="isSelf(params.tranferInfo.show_user_status,params.tranferInfo.assign_role_id)">
+				<a class="update" ng-show="params.rejectFlag"  ng-click="reject($index)">拒绝</a>
+				<a class="update" ng-click="abnormal()">异常</a>
+				<a class="submit" ng-click="goUpstairs($index)">提交</a>
+			</div>
+			<a class="cancle" ng-click="cancleBack()">取消</a>
+		</div>
+	</div>
+</div>
+	
+	<div class="dialog">
+		<div class="title">{{params.dialogMes}}</div>
+		<div class="dialog-c">
+			<div class="sure" ng-click="sure()" >
+				确定
+			</div>
+			<div class="cancle" ng-click="cancel()" >
+				取消
+			</div>
+		</div>
+	</div>
+	<div class="hide">
+	</div>
+	<div class="err-mess" ng-show="params.errSymbol">{{params.errMsg}}</div>
+	

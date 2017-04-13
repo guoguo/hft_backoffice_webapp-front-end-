@@ -1,0 +1,23 @@
+<div>
+    <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+    <h1>Email</h1>
+    <form name="form" ng-submit="vm.email()" role="form">
+        <!-- Old Email text, error, input -->
+        <div class="form-group" ng-class="{ 'has-error': form.oldEmail.$dirty && form.oldEmail.$error.required }">
+            <label for="oldEmail">Old Email</label>
+            <input type="text" name="oldEmail" id="oldEmail" class="form-control" ng-model="vm.oldEmail"></input>
+            <span ng-show="form.oldEmail.$dirty && form.oldEmail.$error.required" class="help-block">Old email required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.newEmail.$dirty && form.newEmail.$error.required }">
+            <!-- New Email text, error, input -->
+            <label for="newEmail">New Email</label>
+            <input type="text" name="newEmail" id="newEmail" class="form-control" ng-model="vm.newEmail"></input>
+            <span ng-show="form.newEmail.$dirty && form.newEmail.$error.requred" class="help-block">New email required</span>
+        </div>
+        <!-- Update Button -->
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Update</button>
+        </div>
+
+    </form>
+</div>

@@ -1,0 +1,62 @@
+<div class="add-user">
+	<div class="add-user-title">
+		{{params.title}}
+	</div>
+	
+	<div class="add-u-p" ng-show="!params.addFlag">
+		<div class="add-u-p-dt on-ready">
+			<span>用户id：{{params.id}}</span>
+		</div>
+	</div>
+	<div class="add-u-p" ng-show="!params.addFlag">
+		<div class="add-u-p-dt on-ready">
+			<span>描述：{{params.description}}</span>
+		</div>
+	</div>
+	<div class="add-u-p" ng-show="!params.addFlag">
+		<div class="add-u-p-dt on-ready">
+			<span>账户类型：{{params.asset_type}}</span>
+		</div>
+	</div>
+	<div class="add-u-p" ng-show="!params.addFlag">
+		<div class="add-u-p-dt on-ready">
+			<span>充提类型：{{params.is_currency}}</span>
+		</div>
+	</div>
+	<div class="add-u-p" ng-show="params.addFlag">
+		<div class="add-u-p-dt">
+			<input type="text" ng-model="params.user_id" placeholder="请输入用户id" />
+		</div>
+	</div>
+	<div class="add-u-p" ng-show="params.addFlag">
+		<div class="add-u-p-dt">
+			<input type="text" ng-model="params.description" placeholder="请输入描述" />
+		</div>
+	</div>
+	<div class="add-u-p" ng-show="params.addFlag">
+		<div class="add-u-p-dt">
+			<input type="text" ng-model="params.asset_type" placeholder="请输入账户类型" />
+		</div>
+	</div>
+	<div class="add-u-p" ng-show="params.addFlag">
+		<div class="add-u-p-dt">
+			<input type="text" ng-model="params.is_currency" placeholder="请输入：'DEPOSIT','WITHDRAVAL'" />
+		</div>
+	</div>
+	<div class="add-u-p">
+		<div class="add-u-p-dt">
+			<input type="text" ng-model="params.single_limit" placeholder="请输入单笔限额" />
+		</div>
+	</div>
+	
+	<div class="add-u-p">
+		<div class="add-u-p-dt">
+			<input type="text" ng-model="params.accumulate_limit" placeholder="请输入累计限额" />
+		</div>
+	</div>
+	<div class="add-u-p">
+		<div class="add-u-p-sm" ng-show="params.add_submit" ng-click="modifyDefaultLimit()">提交</div>
+		<div class="add-u-p-cl" ng-click="back()">取消</div>
+	</div>
+</div>
+	

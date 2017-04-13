@@ -1,0 +1,41 @@
+{
+  "LOGIN.TITLE"               : "Login",
+  "LOGIN.USERNAME"            : "Phone number",
+  "LOGIN.USERNAME_REQ"        : "Username is required",
+  "LOGIN.PASSWORD"            : "Password",
+  "LOGIN.PASSWORD_REQ"        : "Password is reqired",
+  "LOGIN.REGISTER"            : "Register",
+  "LOGIN.BUTTON"              : "Login",
+  "LOGIN.ERROE"               : "Username or Password Error",
+
+  "REGISTER.TITLE"            : "Register",
+  "REGISTER.MOBILE_NUMBER"    : "Mobile number",
+  "REGISTER.MOBILE_NUMBER_REQ": "Mobile number is required",
+  "REGISTER.CHECK_CODE"       : "Check code",
+  "REGISTER.CHECK_CODE_REQ"   : "Check code is required",
+  "REGISTER.CANCEL"           : "Cancel",
+  "REGISTER.BUTTON"           : "Register",
+
+  "SIDEBAR.ACCOUNT"           : "account",
+  "SIDEBAR.TRADING"           : "trading desk",
+  "SIDEBAR.DEPOSIT"           : "deposit",
+  "SIDEBAR.WITHDRAW"          : "withdraw",
+  "SIDEBAR.ORDERS"            : "orders",
+  "SIDEBAR.HISTORY"           : "history",
+  "SIDEBAR.SETTINGS"          : "settings",
+  "SIDEBAR.LOGOUT"            : "logout",
+
+  "ORDERBOOK.TITLE"       : "Orderbook",
+  "ORDERBOOK.ASK"         : "Ask",
+  "ORDERBOOK.BID"         : "Bid",
+
+  "TRADE.CREATE_BUYING_ORDER" : "Create buying order",
+  "TRADE.CREATE_SELLING_ORDER" : "Create selling order",
+  "TRADE.CREATE_STOP_LOSS_ORDER" : "Create stop loss order",
+  "TRADE.AMOUNT"          : "Amount",
+  "TRADE.LIMIT"           : "Limit",
+  "TRADE.BUY"             : "Buy",
+  "TRADE.SELL"             : "Sell",
+  "TRADE.STOP_LOSS"             : "Stop loss"
+
+}

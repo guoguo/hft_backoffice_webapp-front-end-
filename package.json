@@ -1,0 +1,32 @@
+{
+  "name": "hft_webapp",
+  "version": "0.2.0",
+  "description": "frontend of exchange",
+  "main": "app.js",
+  "dependencies": {
+    "angular": "^1.6.2",
+    "angular-cookies": "^1.6.2",
+    "angular-highcharts": "^1.1.7",
+    "angular-route": "^1.6.2",
+    "angular-translate": "^2.14.0",
+    "angular-translate-loader-static-files": "^2.14.0",
+    "angular-ui-router": "^0.4.2",
+    "jquery": "^3.1.1"
+  },
+  "devDependencies": {
+    "angular-messages": "^1.6.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ViewBTC/hft_webapp.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ViewBTC/hft_webapp/issues"
+  },
+  "homepage": "https://github.com/ViewBTC/hft_webapp#readme"
+}

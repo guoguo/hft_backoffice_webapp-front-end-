@@ -1,0 +1,122 @@
+<div class="s-home">
+	<div class="d-p-up">
+		<div class="d-p-p01">
+			<input type="text" placeholder="操作员id" ng-model="params.user_id" /><img src="./img/search.png" ng-click="search()"/>
+		</div>
+		<div class="d-p-rs" ng-show="params.userinfoFlag">
+			<div class="d-p-rs-t">
+				<span>UID</span>
+				<span>操作员姓名</span>
+				<span>电话</span>
+				<span>部门</span>
+				<span>角色</span>
+				<span>邮箱</span>
+			</div>
+			<div class="d-p-rs-t d-p-rs-d">
+				<span>{{params.userInfo.id}}</span>
+				<span>{{params.userInfo.name}}</span>
+				<span>{{params.userInfo.mobile}}</span>
+				<span>{{params.userInfo.DEPARTMENT}}</span>
+				<span>{{params.userInfo.STAFF_NAME}}</span>
+				<span>{{params.userInfo.email}}</span>
+				<div class="d-p-rs-cz">
+					<a>详情</a>
+					<img src="./img/close.png" ng-click="userInfoHide()"/>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="bk-t-ms">
+		<a ng-click="assetType($event)" class="bk-t-msaCh">人民币</a>
+		<a ng-click="assetType($event,item.symbol)" ng-repeat="item in params.markets" ng-if="item.symbol!='CNY'">{{item.symbol}}</a>
+	</div>
+	<div class="s-h-down">
+		<div class="s-h-down-l">
+			<h1>操作员操作日志列表</h1>
+			<div class="s-h-down-l-c"> 
+				<div class="s-h-up-l-c01">
+					<div class="bk-t-ms">
+						<a ng-click="queryTask($event)" class="bk-t-msaCh">全部</a>
+						<a ng-click="queryTask($event,'WITHDRAWAL')">提现</a>
+						<a ng-click="queryTask($event,'DEPOSIT')">充值</a>
+						<a ng-click="queryTask($event,1)">锁仓</a>
+					</div>
+					<div class="bk-t-tm">
+						<input type="text" id="starttimeaudit" readonly placeholder="开始时间" />
+						<div class="circle"></div>
+						<input type="text" id="endtimeaudit" readonly placeholder="结束时间"/>
+						<a ng-click="startClick()">确定</a>
+					</div>
+				</div>
+				<div class="s-h-down-l-c02 down">
+					<div class="s-h-up-l-c02-t">
+						<div class="bk-tra">交易id</div>
+						<div class="last-login">操作时间</div>
+						<div class="last-login">任务类型</div>
+						<div class="mobile">交易总金额</div>
+						<div class="telephone">操作员id</div>
+						<div class="bk-tra">状态</div>
+						<div class="bk-tra">账户类型</div>
+					</div>
+					<ul>
+						<li class="s-h-up-l-c02-li" ng-repeat="item in params.audits">
+							<div class="bk-tra01">{{item.bank_transfer_id}}</div>
+							<div class="last-login">{{item.audit_create_time | date:"yyyy-MM-dd hh:mm:ss"}}</div>
+							<div class="last-login" ng-if="item.is_currency==='DEPOSIT'">UID  {{item.customer_user_id}} - 充值</div>
+							<div class="last-login" ng-if="item.is_currency==='WITHDRAWAL'">UID  {{item.customer_user_id}} - 提现</div>
+							<div class="mobile">{{item.amount}}</div>
+							<!--<div class="telephone" ng-if="item.assign_role_id===3">管理员</div>
+							<div class="telephone" ng-if="item.assign_role_id===2">一级主管</div>
+							<div class="telephone" ng-if="item.assign_role_id===1">二级主管</div>
+							<div class="telephone" ng-if="item.assign_role_id===0">普通操作员</div>-->
+							<div class="telephone">{{item.staff_user_id}}</div>
+							<div class="bk-tra01" ng-if="item.system_status===0">已成功</div>
+							<div class="bk-tra01 cal" ng-if="item.system_status===-1">已拒绝</div>
+							<div class="bk-tra01 progress" ng-if="item.system_status!=0 && item.system_status!=-1">进行中</div>
+							<div class="bk-tra01">{{item.asset_type}}</div>
+							<div class="s-h-c-z" ng-show="isSelf(item.show_user_status,item.assign_role_id)">
+								<a class="update" ng-show="params.rejectFlag"  ng-click="reject(item.bank_transfer_id,item.system_status,$index)">拒绝</a>
+								<a class="update" ng-click="abnormal()">异常</a>
+								<a class="submit" ng-click="goUpstairs(item.bank_transfer_id,item.system_status,item.customer_user_id,item.amount,item.is_currency,item.show_user_status,$index)">提交</a>
+							</div>
+						</li>
+					</ul>
+					<div class="export"><a ng-click="exportExcel()">导出</a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	
+	<div class="dialog">
+		<div class="title">{{params.dialogMes}}</div>
+		<div class="dialog-c">
+			<div class="sure" ng-click="sure()" >
+				确定
+			</div>
+			<div class="cancle" ng-click="cancel()" >
+				取消
+			</div>
+		</div>
+	</div>
+	<div class="hide">
+	</div>
+	<div class="err-mess" ng-show="params.errSymbol">{{params.errMsg}}</div>
+<script type="text/javascript">
+    jeDate({
+		dateCell:"#starttimeaudit",
+		format:"YYYY年MM月DD日",
+		isinitVal:true,
+		isTime:true, //isClear:false,
+		minDate:"2014-09-19",
+		okfun:function(val){alert(val)}
+	})
+    jeDate({
+		dateCell:"#endtimeaudit",
+		format:"YYYY年MM月DD日",
+		isinitVal:true,
+		isTime:true, //isClear:false,
+		minDate:"2014-09-19",
+		okfun:function(val){alert(val)}
+	})
+</script>

@@ -1,0 +1,50 @@
+<div class="add-user">
+	<div class="add-user-title">
+		{{params.title}}
+	</div>
+	
+	<div class="add-u-p" ng-show="!params.addFlag">
+		<div class="add-u-p-dt on-ready">
+			<span>用户id：{{params.id}}</span>
+		</div>
+	</div>
+	<div class="add-u-p" ng-show="!params.addFlag">
+		<div class="add-u-p-dt on-ready">
+			<span>注册时间：{{params.created_at | date:"yyyy-MM-dd hh:mm:ss"}}</span>
+		</div>
+	</div>
+	<div class="add-u-p" ng-show="!params.addFlag">
+		<div class="add-u-p-dt on-ready">
+			<span>账户状态：<label ng-if="params.blocked===1">已加入黑名单</label>
+							<label ng-if="params.blocked===0">正常</label></span>
+		</div>
+	</div>
+	<div class="add-u-p" ng-show="!params.addFlag">
+		<div class="add-u-p-dt on-ready">
+			<span>是否删除：<label ng-if="params.deleted===1">已删除</label>
+							<label ng-if="params.deleted===0">正常</label>
+			</span>
+		</div>
+	</div>
+	<div class="add-u-p">
+		<div class="add-u-p-dt">
+			<input type="text" ng-model="params.phone" placeholder="请输入电话" />
+		</div>
+	</div>
+	<div class="add-u-p">
+		<div class="add-u-p-dt">
+			<input type="text" ng-model="params.email" placeholder="请输入邮箱" />
+		</div>
+	</div>
+	<div class="add-u-p">
+		<div class="add-u-p-dt">
+			<input type="text" ng-model="params.vip_level" placeholder="请输入用户等级" />
+		</div>
+	</div>
+
+	<div class="add-u-p">
+		<div class="add-u-p-sm" ng-show="params.add_submit" ng-click="modifyCustomerUser()">提交</div>
+		<div class="add-u-p-cl" ng-click="back()">取消</div>
+	</div>
+</div>
+	

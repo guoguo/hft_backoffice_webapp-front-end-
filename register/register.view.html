@@ -1,0 +1,61 @@
+﻿<div class="login-main">
+	<div id="topBar">
+		<div class="leader">
+			<a href="#">Home</a>
+			<a href="#">Trading</a>
+	<!-- 	<a href="#">News</a> -->
+			<a href="#">Support</a>
+		</div>
+		<div class="signin">
+			<input type="button" value="Register" class="regisrBtn">
+			<input type="button" value="login" class="signBtn">
+		</div>
+	</div>
+	<div class="signContent">
+		<h1 class="text-center">{{ "REGISTER.TITLE" | translate }}</h1>	
+		<form name="form" ng-submit="vm.register()" role="form">
+			<div class="signInput signInputUser">
+				<span ng-show="vm.error.username">{{ 'LOGIN.WRONG_USERNAME' | translate }}</span>
+				<img src="img/icon-userface.png">
+				<input type="text"  placeholder="{{ 'LOGIN.USERNAME' | translate }}" ng-change="validUsername(mobile)" ng-model="mobile">
+			</div>
+			<div class="signInput">
+				<span ng-show="vm.error.password">{{ 'LOGIN.PASSWORD_LONG' | translate }}</span>
+				<!-- <img src="img/icon-password.png"> -->
+				<input type="text" placeholder="Captcha" id="signCaptcha">
+				<!-- <div id="signCaptchaImg"></div> -->
+				<input type="button" value="Send" id="signMasBtn">
+			</div>
+
+			<span id="registError" ng-show="vm.error.errorInfo">{{"REGISTER.TITLE" | translate}}</span>
+			<input type="button" value="Register" class="signBtn">
+			<div class="registFooter">
+				<a href="">Login</a>
+			</div>
+		</form>
+	</div>
+</div>
+<!--<div class="col-md-6 col-md-offset-3">
+    <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+    <h2>{{ "REGISTER.TITLE" | translate }}</h2>
+    <form name="form" ng-submit="vm.register()" role="form">
+        <div class="form-group" ng-class="{ 'has-error': form.mobileNumber.$dirty && form.mobileNumber.$error.required }">
+            <label for="mobileNumber">{{ "REGISTER.MOBILE_NUMBER" | translate }}</label>
+            <input type="mobileNumber" name="mobileNumber" id="mobileNumber" class="form-control" ng-model="vm.username" required />
+            <span ng-show="form.mobileNumber.$dirty && form.mobileNumber.$error.required" class="help-block">{{ "REGISTER.MOBILE_NUMBER_REQ" | translate }}</span>
+        </div>
+        <div>
+          <img src="{{vm.captcha.url}}"/>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.checkCode.$dirty && form.checkCode.$error.required }">
+            <label for="checkCode">{{ "REGISTER.CHECK_CODE" | translate }}</label>
+            <input type="checkCode" name="checkCode" id="checkCode" class="form-control" ng-model="vm.captcha.code" required />
+            <span ng-show="form.checkCode.$dirty && form.checkCode.$error.required" class="help-block">{{ "REGISTER.CHECK_CODE_REQ" | translate }}</span>
+        </div>
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">{{ "REGISTER.BUTTON" | translate }}</button>
+            <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            <a href="#!/login" class="btn btn-link">{{ "REGISTER.CANCEL" | translate }}</a>
+        </div>
+    </form>
+</div>-->

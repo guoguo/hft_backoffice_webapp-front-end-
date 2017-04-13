@@ -1,0 +1,83 @@
+<div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+
+<iframe width="100%" height="500px" frameborder="0" src="https://www.szzc.com/index.php?ctl=view&act=go_full_kline&symbol=BTCCNY"></iframe>
+
+<div class="row order_creator">
+  <div class="col-md-4">
+    <div class="order_create_form controlbox">
+      <h3>{{ "TRADE.CREATE_BUYING_ORDER" | translate }}</h3>
+      <div class="form-group" ng-class="{ 'has-error': form.buy_amount.$dirty && form.buy_amount.$error.required }">
+        <label for="amount">{{ "TRADE.AMOUNT" | translate }}</label>
+        <input type="text" name="buy_amount" id="buy_amount" class="form-control" ng-model="vm.form.buy.amount" required />
+        <span ng-show="form.buy_amount.$dirty && form.buy_amount.$error.required" class="help-block">{{ "LOGIN.USERNAME_REQ" |  translate }}</span>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error': form.buy_limit.$dirty}">
+        <label for="amount">{{ "TRADE.LIMIT" | translate }}</label>
+        <input type="text" name="buy_limit" id="buy_limit" class="form-control" ng-model="vm.form.buy.limit"/>
+        <span ng-show="form.buy_limit.$dirty" class="help-block">{{ "LOGIN.USERNAME_REQ" |  translate }}</span>
+      </div>
+      <input type="button" class="form-control btn btn-buy" value="{{ 'TRADE.BUY' | translate }}" ng-click="createOrder('buy', vm.form.buy.amount, vm.form.buy.limit)">
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="order_create_form controlbox ">
+      <h3>{{ "TRADE.CREATE_STOP_LOSS_ORDER" | translate }}</h3>
+      <div class="form-group" ng-class="{ 'has-error': form.stop_loss_amount.$dirty && form.stop_loss_amount.$error.required }">
+        <label for="amount">{{ "TRADE.AMOUNT" | translate }}</label>
+        <input type="text" name="stop_loss_amount" id="stop_loss_amount" class="form-control" ng-model="vm.form.stop_loss.amount" required />
+        <span ng-show="form.stop_loss_amount.$dirty && form.stop_loss_amount.$error.required" class="help-block">{{ "LOGIN.USERNAME_REQ" |  translate }}</span>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error': form.stop_loss_limit.$dirty}">
+        <label for="amount">{{ "TRADE.LIMIT" | translate }}</label>
+        <input type="text" name="stop_loss_limit" id="stop_loss_limit" class="form-control" ng-model="vm.form.stop_loss.limit"/>
+        <span ng-show="form.stop_loss_limit.$dirty" class="help-block">{{ "LOGIN.USERNAME_REQ" |  translate }}</span>
+      </div>
+      <input type="button" class="form-control btn" value="{{ 'TRADE.STOP_LOSS' | translate }}" ng-click="createOrder('stop_loss', vm.form.stop_loss.amount, vm.form.stop_loss.limit)">
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="order_create_form controlbox">
+      <h3>{{ "TRADE.CREATE_SELLING_ORDER" | translate }}</h3>
+      <div class="form-group" ng-class="{ 'has-error': form.sell_amount.$dirty && form.sell_amount.$error.required }">
+        <label for="amount">{{ "TRADE.AMOUNT" | translate }}</label>
+        <input type="text" name="sell_amount" id="sell_amount" class="form-control" ng-model="vm.form.sell.amount" required />
+        <span ng-show="form.sell_amount.$dirty && form.sell_amount.$error.required" class="help-block">{{ "LOGIN.USERNAME_REQ" |  translate }}</span>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error': form.sell_limit.$dirty}">
+        <label for="amount">{{ "TRADE.LIMIT" | translate }}</label>
+        <input type="text" name="sell_limit" id="sell_limit" class="form-control" ng-model="vm.form.sell.limit"/>
+        <span ng-show="form.sell_limit.$dirty" class="help-block">{{ "LOGIN.USERNAME_REQ" |  translate }}</span>
+      </div>
+      <input type="button" class="form-control btn btn-sell" value="{{ 'TRADE.SELL' | translate }}" ng-click="createOrder('sell', vm.form.sell.amount, vm.form.sell.limit)">
+    </div>
+  </div>
+
+
+</div>
+
+<!-- Begin of Orderbook -->
+<div class="row">
+  <div class="col-md-12">
+
+  <div class="orderbookwrapper controlbox " id="orderbook">
+    <h2>{{ "ORDERBOOK.TITLE" | translate}}</h2>
+    <div class="row">
+    <div class="col-lg-6 col-sm-12">
+      <table class="orderbook ask">
+        <h3>{{ "ORDERBOOK.ASK" | translate }}</h3>
+        <tr ng-repeat="order in orderbook.ask | orderBy:'0'" ng-click="setForm('buy',order[1], order[0]);"> <td>{{order[0]}}</td><td>{{order[1]}}</td><td>{{order[2]}}</td></tr>
+      </table>
+    </div>
+    <div class="col-lg-6 col-sm-12">
+      <table class="orderbook bid">
+        <h3>{{ "ORDERBOOK.BID" | translate }}</h3>
+        <tr ng-repeat="order in orderbook.bid | orderBy:'0':true" ng-click="setForm('sell',order[1], order[0]);"> <td>{{order[0]}}</td><td>{{order[1]}}</td><td>{{order[2]}}</td></tr>
+      </table>
+    </div>
+    </div>
+  </div>
+  </div>
+</div>
+<!-- End of Orderbook -->

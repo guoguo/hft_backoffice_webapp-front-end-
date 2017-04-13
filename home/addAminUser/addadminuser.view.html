@@ -1,0 +1,65 @@
+<div class="add-user">
+	<div class="add-user-title">
+		{{params.title}}
+	</div>
+	<div class="add-u-p">
+		<span class="add-u-p-un">权限</span>
+		<div class="add-u-p-dt">
+			<span ng-click="show('roles')">{{params.role}}</span>
+			<img src=""/>
+		    <ul id="roles" class="add-u-p-dt01">
+				<li ng-repeat="item in params.roles" ng-click="roleclick(item.id,item.role_name,'roles')">{{item.role_name}}</li>
+			</ul>
+		</div>
+	</div>
+	<div class="add-u-p">
+		<span class="add-u-p-un">员工姓名</span>
+		<div class="add-u-p-dt">
+			<input type="text" ng-model="name" />
+		</div>
+	</div>
+	<div class="add-u-p">
+		<span class="add-u-p-un">性别</span>
+		<div class="add-u-p-dt">
+			<span ng-click="show('sex')">{{params.sex}}</span>
+			<img src=""/>
+		    <ul id="sex" class="add-u-p-dt01">
+				<li ng-repeat="item in params.genders" ng-click="roleclick(item.id,item.gender,'sex')">{{item.gender}}</li>
+			</ul>
+		</div>
+	</div>
+	<div class="add-u-p">
+		<span class="add-u-p-un">手机号</span>
+		<div class="add-u-p-dt">
+			<input type="text" ng-model="mobile" />
+		</div>
+	</div>
+	<div class="add-u-p">
+		<span class="add-u-p-un">电话</span>
+		<div class="add-u-p-dt">
+			<input type="text" ng-model="telephone" />
+		</div>
+	</div>
+	<div class="add-u-p">
+		<span class="add-u-p-un">邮箱</span>
+		<div class="add-u-p-dt">
+			<input type="text" ng-model="email" />
+		</div>
+	</div>
+	<div class="add-u-p">
+		<span class="add-u-p-un">所属部门</span>
+		<div class="add-u-p-dt">
+			<span ng-click="show('depart')">{{params.depart}}</span>
+			<img src=""/>
+		    <ul id="depart" class="add-u-p-dt01">
+				<li ng-repeat="item in params.department" ng-click="roleclick(item.id,item.department_name,'depart')">{{item.department_name}}</li>
+			</ul>
+		</div>
+	</div>
+	<div class="add-u-p">
+		<div class="add-u-p-sm" ng-show="params.add_submit" ng-click="createUser()">提交</div>
+		<div class="add-u-p-rs" ng-show="params.add_reset">重置密码</div>
+		<div class="add-u-p-cl" ng-click="back()">取消</div>
+	</div>
+</div>
+	

@@ -1,0 +1,44 @@
+<div class="s-home">
+	<div class="d-p-up">
+		<div class="d-p-p01">
+			<input type="text" placeholder="用户id" ng-model="params.user_id" /><img src="./img/search.png" ng-click="search()"/>
+		</div>
+	</div>
+	<div class="s-h-down">
+		<div class="s-h-down-l">
+			<h1>用户充提限额列表</h1>
+			<div class="s-h-down-l-c"> 
+				<div class="s-h-up-l-c01">
+					<div class="bk-t-ms a-u-cz">
+						<a href="#!/home/modifyconfigcustome/id/bank/DEPOSIT">新增用户限额列表</a>
+					</div>
+				</div>
+				<div class="s-h-down-l-c02 down">
+					<div class="s-h-up-l-c02-t">
+						<div class="bk-tra">用户id</div>
+						<div class="last-login">描述</div>
+						<div class="last-login">充提类型</div>
+						<div class="mobile">单笔限额</div>
+						<div class="bk-tra">累计限额</div>
+						<div class="bk-tra">账户类型</div>
+					</div>
+					<ul>
+						<li class="s-h-up-l-c02-li" ng-repeat="item in params.allData">
+							<div class="bk-tra01">{{item.customer_user_id}}</div>
+							<div class="last-login">{{item.description}}</div>
+							<div class="last-login" ng-if="item.is_currency==='DEPOSIT'">充值</div>
+							<div class="last-login" ng-if="item.is_currency==='WITHDRAWAL'">提现</div>
+							<div class="mobile">{{item.single_limit}}</div>
+							<div class="bk-tra01">{{item.accumulate_limit}}</div>
+							<div class="bk-tra01">{{item.asset_type}}</div>
+							<div class="s-h-c-z">
+								<a class="update" href="#!/home/modifyconfigcustome/{{item.customer_user_id}}/{{item.asset_type}}/{{item.is_currency}}">修改</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	

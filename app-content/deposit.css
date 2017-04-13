@@ -1,0 +1,179 @@
+*:focus {
+	outline: none;
+	margin:0;
+	padding:0;
+}
+* {
+	margin:0;
+	padding:0;
+}
+html,body{
+	width:100%;
+	height:100%;
+	background-size: cover;
+	font-size:12px;
+}
+.d-p-up{
+	width:100%;
+	max-height:20rem;
+}
+.d-p-p01{
+	width:30%;
+	height:4rem;
+	margin:4rem auto;
+	display:flex;
+	display:-webkit-flex;
+	display:-moz-flex;
+}
+.d-p-p01 input{
+	display:block;
+	flex:1;
+	-webkit-flex:1;
+	-moz-flex:1;
+	height:4rem;
+	border:0;
+	border-radius:2rem;
+	text-indent:2rem;
+}
+.d-p-p01 img{
+	width:4rem;
+	height:4rem;
+	border-radius:2rem;
+	margin-left:2rem;
+}
+.d-p-rs{
+	width:100%;
+	height:14rem;
+}
+.d-p-rs-t{
+	width:100%;
+	height:3rem;
+	margin-top:1rem;
+}
+.d-p-rs-t span{
+	width:12%;
+	height:3rem;
+	display:block;
+	float:left;
+	text-align:center;
+	line-height:3rem;
+}
+.d-p-rs-d span{
+	color:#999;
+}
+.d-p-rs-cz{
+	height:3rem;
+	float:left;
+	margin-left:10px;
+}
+.d-p-rs-cz a{
+	width:8rem;
+	height:2rem;
+	float:left;
+	margin-left:10px;
+	background:#ccc;
+	border-radius:1rem;
+	display:block;
+	color:#fff;
+	text-align:center;
+	line-height:2rem;
+	margin-top:0.5rem;
+}
+.d-p-rs-cz label{
+	width:8rem;
+	height:2rem;
+	float:left;
+	display:block;
+	color:#888;
+	text-align:center;
+	line-height:2rem;
+	margin-top:0.5rem;
+}
+.d-p-rs-cz img{
+	width: 2rem;
+    height: 2rem;
+    margin-left: 10px;
+    margin-top: 0.5rem;
+}
+.bk-t-ms{
+	height:3rem;
+	float:left;
+	margin-left:2rem;
+}
+.bk-t-ms a{
+	width:8rem;
+	height:2rem;
+	display:block;
+	float:left;
+	margin-top:0.5rem;
+	margin-left:10px;
+    color:#999;	
+	text-align:center;
+	line-height:2rem;
+}
+.s-h-down-lau{
+	margin-left:4rem;
+	color: #00cc99;
+}
+.bk-t-msaCh{
+	background:#00cc99;
+	color:#fff!important;
+	border-radius:1rem;
+}
+
+.bk-t-tm{
+	height:3rem;
+	float:right;
+	margin-right:2rem;
+}
+
+.bk-t-tm  input{
+	width:10rem;
+	height:2rem;
+	display:block;
+	float:left;
+	margin-top:0.5rem;
+	margin-left:10px;
+    color:#999;	
+	text-align:center;
+	line-height:2rem;
+	border-radius:1rem;
+	border:0;
+}
+
+.bk-t-tm  .circle{
+	width:1rem;
+	height:1rem;
+	margin-top:1rem;
+	margin-left:10px;
+	border-radius:50%;
+	float: left;
+    background: #999;
+}
+
+.bk-t-tm  a{
+	width:8rem;
+	height:2rem;
+	display:block;
+	float:left;
+	margin-top:0.5rem;
+	margin-left:10px;
+    color:#999;	
+	text-align:center;
+	line-height:2rem;
+	background:#00cc99;
+	color:#fff!important;
+	border-radius:1rem;
+}
+.bk-tra{
+	width: 5%;
+    height: 5rem;
+    line-height: 5rem;
+    float: left;
+}
+.bk-tra01{
+	width: 5%;
+    height: 3rem;
+    line-height: 3rem;
+    float: left;
+}

@@ -1,0 +1,85 @@
+
+<div id="topBar" class="main-menu">
+	<img id="logo" src="../img/logo.png">
+	<a class="pull-right" onClick="setTheme()">Theme</a>
+</div>
+
+<div class="area"></div><nav class="main-menu hidden-xs">
+            <ul>
+                <li>
+                    <a href="/#!/overview">
+                        <i class="fa fa-account fa-2x icon" id="account">
+													<!--<img src="../img/icon-account.png" id="account" class="icon"> -->
+												</i>
+                        <span class="nav-text">
+                            {{ "SIDEBAR.ACCOUNT" | translate }}
+                        </span>
+                    </a>
+
+                </li>
+                <li class="has-subnav">
+                    <a href="/#!/trade">
+                        <i class="fa fa-trading-desk fa-2x icon" id="trading">
+												</i>
+                        <span class="nav-text select-text">
+                            {{ "SIDEBAR.TRADING" | translate }}
+                        </span>
+                    </a>
+
+                </li>
+                <li class="has-subnav">
+                    <a href="/deposit">
+                       <i class="fa fa-deposit fa-2x icon" id="deposit">
+											 </i>
+                        <span class="nav-text">
+                            {{ "SIDEBAR.DEPOSIT" | translate }}
+                        </span>
+                    </a>
+
+                </li>
+                <li class="has-subnav">
+                    <a href="#">
+                       <i class="fa fa-withdraw fa-2x icon" id="withdraw">
+											 </i>
+                        <span class="nav-text">
+                            {{ "SIDEBAR.WITHDRAW" | translate }}
+                        </span>
+                    </a>
+
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-history fa-2x icon" id="history">
+												</i>
+                        <span class="nav-text">
+                            {{ "SIDEBAR.HISTORY" | translate }}
+                        </span>
+                    </a>
+                </li>
+                <li>
+                   <a href="/#!/setting/email">
+                       <i class="fa fa-settings fa-2x icon" id="setting">
+											 </i>
+                        <span class="nav-text">
+                            {{ "SIDEBAR.SETTINGS" | translate }}
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="logout">
+                <li>
+                   <a href="/#!/login">
+                         <i class="fa fa-power-off fa-2x icon" id="logout">
+												 </i>
+                        <span class="nav-text">
+                            {{ "SIDEBAR.LOGOUT" | translate }}
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+<div class="container">
+      <ui-view \>
+</div>

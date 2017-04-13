@@ -1,0 +1,167 @@
+*:focus {
+	outline: none;
+	margin:0;
+	padding:0;
+}
+* {
+	margin:0;
+	padding:0;
+}
+html,body{
+	width:100%;
+	height:100%;
+	background-size: cover;
+	font-size:12px;
+}
+.themable{
+	background:#eee;
+}
+.login{
+	position:fixed;
+	top:50%;
+	left:50%;
+	width:400px;
+	height:33rem;
+	margin-left:-200px;
+	margin-top:-12.5rem;
+	display:flex;
+	display:-webkit-flex;
+	display:-moz-flex;
+	display:-o-flex;
+	flex-flow:column;
+	-webkit-flex-flow:column;
+	-moz-flex-flow:column;
+	-o-flex-flow:column;	
+}
+.login-title{
+	width:100%;
+	height:3rem;
+	text-align:center;
+	line-height:3rem;
+	color:#222;
+	font-weight:bold;
+	font-size:2rem;
+}
+.login-username{
+	width:100%;
+	height:3rem;
+	border:1px solid #eee;
+	border-radius:1.5rem;
+	display:block;
+	margin-top:5rem;
+	text-indent:1.5rem;
+}
+.login-password{
+	width:100%;
+	height:3rem;
+	border:1px solid #eee;
+	border-radius:1.5rem;
+	display:block;
+	margin-top:2rem;
+	text-indent:1.5rem;
+}
+.login-err{
+	width:100%;
+	height:3rem;
+	border:1px solid #eee;
+	border-radius:1.5rem;
+	display:block;
+	margin-top:1rem;
+	text-indent:1.5rem;
+	color:#e6271d;
+	text-align:center;
+	line-height:3rem;
+}
+.login-submit{
+	width:100%;
+	width:100%;
+	height:3rem;
+	border:1px solid #42ecaa;
+	background:#42ecaa;
+	border-radius:1.5rem;
+	display:block;
+	margin-top:1rem;
+	text-indent:1.5rem;
+	text-align:center;
+	line-height:3rem;
+	color:#fff;
+}
+
+@media screen and (max-width:768px){
+	.themable{
+		background:#eee;
+	}
+	.login{
+		position:fixed;
+		top:50%;
+		left:50%;
+		width:300px;
+		height:33rem;
+		margin-left:-150px;
+		margin-top:-12.5rem;
+		display:flex;
+		display:-webkit-flex;
+		display:-moz-flex;
+		display:-o-flex;
+		flex-flow:column;
+		-webkit-flex-flow:column;
+		-moz-flex-flow:column;
+		-o-flex-flow:column;	
+	}
+	.login-title{
+		width:100%;
+		height:3rem;
+		text-align:center;
+		line-height:3rem;
+		color:#222;
+		font-weight:bold;
+		font-size:2rem;
+	}
+	.login-username{
+		width:100%;
+		height:3rem;
+		border:1px solid #eee;
+		border-radius:1.5rem;
+		display:block;
+		margin-top:5rem;
+		text-indent:1.5rem;
+	}
+	.login-password{
+		width:100%;
+		height:3rem;
+		border:1px solid #eee;
+		border-radius:1.5rem;
+		display:block;
+		margin-top:2rem;
+		text-indent:1.5rem;
+	}
+	.login-err{
+		width:100%;
+		height:3rem;
+		border:1px solid #eee;
+		border-radius:1.5rem;
+		display:block;
+		margin-top:1rem;
+		text-indent:1.5rem;
+		color:#e6271d;
+		text-align:center;
+		line-height:3rem;
+	}
+	.login-submit{
+		width:100%;
+		width:100%;
+		height:3rem;
+		border:1px solid #42ecaa;
+		background:#42ecaa;
+		border-radius:1.5rem;
+		display:block;
+		margin-top:1rem;
+		text-indent:1.5rem;
+		text-align:center;
+		line-height:3rem;
+		color:#fff;
+	}
+
+}
+	
+	

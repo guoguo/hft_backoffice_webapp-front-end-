@@ -1,0 +1,136 @@
+.add-user{
+	width:400px;
+	margin:50px auto 0px;
+}
+.add-user-title{
+	width: 100%;
+    height: 4rem;
+    color: #666;
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 4rem;
+	text-align:center;
+}
+.add-u-p{
+	width: 100%;
+    height: 3rem;
+    color: #666;
+    line-height: 3rem;
+	margin-top:2rem;
+	display:flex;
+	display:-webkit-flex;
+	display:-moz-flex;
+	display:-o-flex;
+}
+.add-u-p-un{
+	width:80px;
+	height:3rem;
+	text-align:right;
+	font-size:1.2rem;
+}
+.add-u-p-dt{
+	flex:1;
+	-webkit-flex:1;
+	-moz-flex:1;
+	-o-flex:1;
+	margin-left:2rem;
+	background:#fff;
+	border-radius:1.5rem;
+}
+.add-u-p-dt01{
+	display:block;
+	position:absolute;
+	margin-left: 1.5rem;
+    width: 265px;
+    min-height: 100px;
+    margin-top: 0rem;
+    background: #fff;
+    display: none;
+    z-index: 11;
+    border: 1px solid red;
+    border-top: 0;
+    border-radius: 0px 0px 5px 5px;
+}
+.add-u-p-dt01 li{
+	display:block;
+	height:3rem;
+	line-height:3rem;
+	text-align:center;
+}
+.add-u-p-dt01li{
+	color:#fff;
+	background:#ff5a5f;
+}
+.add-u-p-dt01 li:hover{
+	color:#fff;
+	background:#ff5a5f;
+}
+.add-u-p-dt input{
+	display:block;
+	height:3rem;
+	margin-left:1.5rem;
+	margin-right:1.5rem;
+	border:0;
+}
+.add-u-p-dt span{
+	display:block;
+	height:3rem;
+	margin-left:1.5rem;
+	margin-right:1.5rem;
+}
+.add-u-p .on-ready{
+	background:#eee!important;
+}
+.add-u-p-dt img{
+	display:block;
+	position:absolute;
+	margin-left:260px;
+	width: 20px;
+    height: 10px;
+    margin-top: -2.8rem;
+}
+.add-u-p-sm{
+	flex:1;
+	-webkit-flex:1;
+	-moz-flex:1;
+	-o-flex:1;
+	height:3rem;
+	line-height:3rem;
+	text-align:center;
+	color:#fff;
+	font-size:1.5rem;
+	background:#00cc99;
+	border-radius:5px;
+	cursor:pointer;
+}
+.add-u-p-rs{
+	flex:1;
+	-webkit-flex:1;
+	-moz-flex:1;
+	-o-flex:1;
+	height:3rem;
+	line-height:3rem;
+	text-align:center;
+	color:#fff;
+	font-size:1.5rem;
+	background:#ff5a5f;
+	border-radius:5px;
+	margin-left:20px;
+	cursor:pointer;
+}
+.add-u-p-cl{
+	flex:1;
+	-webkit-flex:1;
+	-moz-flex:1;
+	-o-flex:1;
+	height:3rem;
+	line-height:3rem;
+	text-align:center;
+	color:#fff;
+	font-size:1.5rem;
+	background:#ddd;
+	border-radius:5px;
+	margin-left:20px;
+	cursor:pointer;
+}
+

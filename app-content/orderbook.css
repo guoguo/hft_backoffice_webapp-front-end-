@@ -1,0 +1,50 @@
+.orderbookwrapper {
+  min-width: 500px;
+}
+
+.orderbook {
+  text-align: left;
+	overflow: hidden;
+	width: 100%;
+	margin: 0 auto;
+  padding: 0 0 8em 0;
+  table-layout: fixed;
+}
+
+.orderbook td {
+	  font-weight: normal;
+	  font-size: 1em;
+    text-align: right;
+    -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+	  -moz-box-shadow: 0 2px 2px -2px #0E1119;
+	  box-shadow: 0 2px 2px -2px #0E1119;
+}
+
+.orderbook td,
+.orderbook th {
+  color: black;
+  font-size: 12px;
+  line-height: 22px;
+}
+.night .orderbook td,
+.night orderbook th {
+  color: white;
+}
+
+.orderbook th {
+}
+
+.down{
+    color: #ed3b8b; 
+}
+
+.up{
+    color:#42ecaa;
+}
+
+.orderbook.ask td:first-child { color:#ed3b8b; }
+.orderbook.bid td:first-child { color:#42ecaa;}
+
+.orderbook tr:hover {
+  background-color: grey;
+}

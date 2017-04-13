@@ -1,0 +1,18 @@
+<div class="scrollbar col-mid-12">
+    <div id="containerBTC" style="width: 300px; height: 300px; margin: 0 auto" ></div>
+    <div id="containerZEC" style="width: 300px; height: 300px; margin: 0 auto" ></div>
+    <div id="containerETH" style="width: 300px; height: 300px; margin: 0 auto" ></div>
+    <div id="containerETC" style="width: 300px; height: 300px; margin: 0 auto" ></div>
+    <div id="containerETP" style="width: 300px; height: 300px; margin: 0 auto" ></div>
+</div>
+<h1>hallo</h1>
+<div class="row">
+    <div class="col-md-6 controlbox">
+        <h3>Balances</h3>
+        <div class="row" ng-repeat="balance in vm.balances">
+            <div class="col-md-4">{{balance.symbol}}</div>
+            <div class="col-md-4">{{balance.balance}}</div>
+            <div class="col-md-4">{{balance.frozen}}</div>
+        </div>
+    </div>
+</div>

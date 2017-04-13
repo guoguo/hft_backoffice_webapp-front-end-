@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <title>Professional Trader Exchange Deluxe Edition 0.1 alpha</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<meta name="applicable-device"content="pc,mobile"/>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/angular/angular.min.js"></script>
+    <script src="./node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="./node_modules/angular-cookies/angular-cookies.min.js"></script>
+	 <script src="./node_modules/angular-mocks/angular-mocks.js"></script>
+	 <script src="./node_modules/angular-messages/angular-messages.js"></script>
+    <script src="./node_modules/angular-translate/dist/angular-translate.min.js"></script>
+    <script src="./node_modules/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+
+    <!-- Implement later -->
+    <!-- <script src="http://code.highcharts.com/stock/highcharts.src.js"></script> -->
+
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+
+
+    <script src="app.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/jeDate/jedate.js"></script>
+    <script src="app-services/authentication.service.js"></script>
+    <script src="app-services/flash.service.js"></script>
+    <script src="app-services/register.service.js"></script>
+    <script src="app-services/market.service.js"></script>
+    <script src="app-services/live.service.js"></script>
+    <script src="app-services/private.service.js"></script>
+    <script src="app-services/public.service.js"></script>
+    <script src="app-services/super.service.js"></script>
+    <script src="app-services/mytask.service.js"></script>
+    <script src="app-services/bankdetail.service.js"></script>
+    <script src="app-services/bankdeposit.service.js"></script>
+    <script src="app-services/home.service.js"></script>
+    <script src="app-services/admin.service.js"></script>
+    <script src="app-services/audit.service.js"></script>
+    <script src="app-services/config.service.js"></script>
+    <script src="app-services/coindetail.service.js"></script>
+    <script src="app-services/configcustomer.service.js"></script>
+    <script src="app-services/customer.service.js"></script>
+    <script src="app-services/modifyconfigcustome.service.js"></script>
+    <script src="app-services/modifycustomer.service.js"></script>
+    <script src="app-services/modifyconfig.service.js"></script>
+    <script src="app-services/modifypassword.service.js"></script>
+    <!-- Real user service that uses an api -->
+    <!-- <script src="app-services/user.service.js"></script> -->
+
+    <!-- Fake user service for demo that uses local storage -->
+	<script src="app-helpers/public-fake-backend.js"></script>
+    <script src="app-helpers/private-fake-backend.js"></script>
+   
+    <script src="app-services/user.service.local-storage.js"></script>
+
+    <script src="home/home.controller.js"></script>
+    <script src="home/addAminUser/addAminUser.controller.js"></script>
+    <script src="home/modifypassword/modifyPassword.controller.js"></script>
+    <script src="home/mytask/mytask.controller.js"></script>
+    <script src="home/bankwithdrawal/bankwithdrawal.controller.js"></script>
+    <script src="home/super/super.controller.js"></script>
+    <script src="home/bankdeposit/bankdeposit.controller.js"></script>
+    <script src="home/bankdetail/bankdetail.controller.js"></script>
+    <script src="home/audit/audit.controller.js"></script>
+    <script src="home/config/config.controller.js"></script>
+    <script src="home/configcustome/configcustome.controller.js"></script>
+    <script src="home/modifyconfigcustome/modifyconfigcustome.controller.js"></script>
+    <script src="home/modifyconfig/modifyconfig.controller.js"></script>
+    <script src="home/coindeposit/coindeposit.controller.js"></script>
+    <script src="home/coindetail/coindetail.controller.js"></script>
+    <script src="home/coinwithdrawal/coinwithdrawal.controller.js"></script>
+    <script src="home/bankartificial/bankartificial.controller.js"></script>
+    <script src="home/privilege/privilege.controller.js"></script>
+    <script src="home/customer/customer.controller.js"></script>
+    <script src="home/modifycustomer/modifycustomer.controller.js"></script>
+    <script src="overview/overview.controller.js"></script>
+    <script src="login/login.controller.js"></script>
+    <script src="register/register.controller.js"></script>
+    <script src="trading-desk/trading-desk.controller.js"></script>
+    <script src="setting/setting.controller.js"></script>
+	<link href="app-content/supermanager.css" rel="stylesheet" />
+    <link href="app-content/app.css" rel="stylesheet" />
+    <link href="app-content/deposit.css" rel="stylesheet" />
+    <link href="app-content/home.css" rel="stylesheet" />
+    <link href="app-content/sidebar.css" rel="stylesheet" />
+    <link href="app-content/orderbook.css" rel="stylesheet" />
+    <link href="app-content/setting.css" rel="stylesheet" />
+    <link href="app-content/login.css" rel="stylesheet" />
+    <link href="app-content/audit.css" rel="stylesheet" />
+    <link href="app-content/adduser.css" rel="stylesheet" />
+    
+</head>
+<body class="themable">
+    <ui-view></ui-view>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<div class="s-home">
+	<div class="d-p-up">
+		<div class="d-p-p01">
+			<input type="text" placeholder="ID/PHONE/EMAIL/BLOCKED" ng-model="params.condition" /><img src="./img/search.png" ng-click="search()"/>
+		</div>
+	</div>
+	<div class="s-h-down">
+		<div class="s-h-down-l">
+			<h1>用户列表</h1>
+			<div class="s-h-down-l-c"> 
+				<div class="s-h-up-l-c01">
+					<div class="bk-t-ms">
+						<a ng-click="queryUser($event,-2)" class="bk-t-msaCh">全部</a>
+						<a ng-click="queryUser($event,0)">黑名单</a>
+					</div>
+				</div>
+				<div class="s-h-down-l-c02 down">
+					<div class="s-h-up-l-c02-t">
+						<div class="bk-tra">用户id</div>
+						<div class="last-login">电话号码</div>
+						<div class="last-login">邮箱地址</div>
+						<div class="last-login">注册时间</div>
+						<div class="mobile">用户等级</div>
+						<div class="bk-tra">账户状态</div>
+						<div class="bk-tra">是否删除</div>
+					</div>
+					<ul>
+						<li class="s-h-up-l-c02-li" ng-repeat="item in params.customers">
+							<div class="bk-tra01">{{item.id}}</div>
+							<div class="last-login">{{item.phone}}</div>
+							<div class="last-login">{{item.email}}</div>
+							<div class="last-login">{{item.created_at | date:"yyyy-MM-dd hh:mm:ss"}}</div>
+							<div class="mobile">level-{{item.vip_level}}</div>
+							<div class="bk-tra01 " ng-if="item.blocked===1">已加入黑名单</div>
+							<div class="bk-tra01" ng-if="item.blocked===0">正常</div>
+							<div class="bk-tra01" ng-if="item.deleted===1">已删除</div>
+							<div class="bk-tra01" ng-if="item.deleted===0">正常</div>
+							<div class="s-h-c-z" ng-if="item.deleted===0">
+								<a class="update" href="#!/home/modifycustomer/{{item.id}}">修改</a>
+								<a class="update" ng-if="item.blocked===1" ng-click="unblock(item.id,$index)">移除黑名单</a>
+								<a class="update" ng-if="item.blocked===0" ng-click="block(item.id,$index)">加入黑名单</a>
+								<a class="submit" ng-click="deleteCustomerUser(item.id,$index)">删除</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	
+	<div ng-show="params.hide" class="dialog dialogs">
+		<div class="title">{{params.dialogMes}}</div>
+		<div class="dialog-c">
+			<div class="sure" ng-click="sure()" >
+				确定
+			</div>
+			<div class="cancle" ng-click="cancel()" >
+				取消
+			</div>
+		</div>
+	</div>
+	<div class="hide dialogs" ng-show="params.hide">
+	</div>
+

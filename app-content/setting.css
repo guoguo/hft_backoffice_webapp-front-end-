@@ -1,0 +1,18 @@
+#content{
+	  display: flex;
+}
+
+#content div{
+	  flex:1;
+	  height: 100px;
+	  display: inline-block;
+	  background: #ccc;
+	  margin:4px;
+}
+
+@media screen and (max-width:1000px){
+	  #content{
+		    width: 1000px;
+	  }
+
+}
