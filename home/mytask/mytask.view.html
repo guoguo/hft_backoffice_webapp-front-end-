@@ -246,7 +246,7 @@
 								<div class="email">{{item.email}}</div>
 								<div class="department">{{item.DEPARTMENT}}</div>
 								<div class="last-login">{{item.LAST_LOGIN_DATETIME}}</div>
-								<div class="s-h-c-z">
+								<div class="s-h-c-z" style="width:15%;">
 									<!--<a class="update">修改</a>-->
 									<a class="frozen" ng-if="item.status===0" ng-click="frozen(item.uid,$index,0,'user')">冻结</a>
 									<a class="unfrozen" ng-if="item.status===1" ng-click="frozen(item.uid,$index,2,'user')">解冻</a>
@@ -281,15 +281,15 @@
 		</div>
 		<div class="my-dialog-img">
 			<span>正面照</span>
-			<img src="params.authorInfo.frand"/>
+			<img ng-src="{{params.authorInfo.frand}}"/>
 		</div>
 		<div class="my-dialog-img">
 			<span>反面照</span>
-			<img src="params.authorInfo.back"/>
+			<img ng-src="{{params.authorInfo.back}}"/>
 		</div>
 		<div class="my-dialog-img">
 			<span>手持照</span>
-			<img src="params.authorInfo.face"/>
+			<img ng-src="{{params.authorInfo.face}}"/>
 		</div>
 		<div class="my-dialog-img">
 			<span>备注</span>

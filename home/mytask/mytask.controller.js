@@ -730,7 +730,9 @@
 								$scope.params.mycointask[index].show_user_status=0;
 							}
 						}else if(response.message='ERR_AMOUNT_EXCCED_FAIL'){
-							Util.dialog("提现额度超过单笔提现额度，请拒绝!");
+							Util.dialog("提现额度超过单笔额度，请拒绝!");
+						}else if(response.message='ERR_AMOUNT_ACCUMULATE_LIMIT_FAIL'){
+							Util.dialog("提现额度超过累计额度，请拒绝!");
 						}else{
 							Util.dialog("提交上级失败");
 						}
@@ -749,7 +751,9 @@
 						}else if(response.message=='ERR_IS_LITTLE'){
 							Util.dialog("该笔数据属于小额自动充值！");
 						}else if(response.message='ERR_AMOUNT_EXCCED_FAIL'){
-							Util.dialog("充值额度超过单笔提现额度，请拒绝!");
+							Util.dialog("充值额度超过单笔额度，请拒绝!");
+						}else if(response.message='ERR_AMOUNT_ACCUMULATE_LIMIT_FAIL'){
+							Util.dialog("提现额度超过累计额度，请拒绝!");
 						}else{
 							Util.dialog("提交上级失败");
 						}
