@@ -28,8 +28,8 @@
 							<div class="last-login">{{item.description}}</div>
 							<div class="last-login" ng-if="item.is_currency==='DEPOSIT'">充值</div>
 							<div class="last-login" ng-if="item.is_currency==='WITHDRAWAL'">提现</div>
-							<div class="mobile">{{item.single_limit}}</div>
-							<div class="bk-tra01">{{item.accumulate_limit}}</div>
+							<div class="mobile">{{item.single_limit/10000000}}</div>
+							<div class="bk-tra01">{{item.accumulate_limit/10000000}}</div>
 							<div class="bk-tra01">{{item.asset_type}}</div>
 							<div class="s-h-c-z">
 								<a class="update" href="#!/home/modifyconfigcustome/{{item.customer_user_id}}/{{item.asset_type}}/{{item.is_currency}}">修改</a>

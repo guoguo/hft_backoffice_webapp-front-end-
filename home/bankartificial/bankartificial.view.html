@@ -75,6 +75,18 @@
 							</div>
 						</li>
 					</ul>
+					<div class="page-m">
+						<div class="page-m-p-all">
+							共{{params.allcount}}页
+						</div>
+						<div class="page-m-p">
+							<span ng-click="prev('login')">首页</span>
+							<div class="page-m-p-a">
+								<a ng-repeat="left in leftPages" class="login-page" ng-click="page($event,left,'login')">{{left}}</a>
+							</div>
+							<span ng-click="next('login')">尾页</span>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

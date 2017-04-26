@@ -2,10 +2,9 @@
   'use strict';
   angular.module('app').factory('MyTaskService', MyTaskService);
 
-  function MyTaskService($http,$rootScope) {
+  function MyTaskService($http,$rootScope,baseInfo) {
     var service = {};
-
-    let SERVER = 'http://127.0.0.1:8060/';
+    let SERVER = baseInfo.baseUrl;
 
     service.debug = true;
 
@@ -18,6 +17,12 @@
     service.goUpstairs = goUpstairs;
     service.rejectFun = rejectFun;
     service.rejectCoinFun = rejectCoinFun;
+    service.queryDeposit = queryDeposit;
+    service.queryCoinDeposit = queryCoinDeposit;
+    service.queryIdCardTask = queryIdCardTask;
+    service.deleteCustomerAuthorInfo = deleteCustomerAuthorInfo;
+    service.updateCustomerAuthorInfo = updateCustomerAuthorInfo;
+    service.queryCustomerAuthorInfo = queryCustomerAuthorInfo;
 
     service.SERVER = SERVER;
 
@@ -61,6 +66,38 @@
     function rejectFun(params) {
       return _post("rejectFun", params);
     };
+	
+	//人民币某个用户充提
+    function queryDeposit(params) {
+      return _get("queryDeposit", params);
+    };
+	
+	//数字货币某个用户充提
+    function queryCoinDeposit(params) {
+      return _get("queryCoinDeposit", params);
+    };
+	
+	//查询所有用户认证信息
+    function queryIdCardTask(params) {
+      return _get("queryCustomerAuthorAll", params);
+    };
+	
+	//用户二级身份验证失败
+    function deleteCustomerAuthorInfo(params) {
+      return _post("deleteCustomerAuthorInfo", params);
+    };
+	
+	//用户二级身份验证
+    function updateCustomerAuthorInfo(params) {
+      return _post("updateCustomerAuthorInfo", params);
+    };
+	
+	//查询某个用户认证信息
+    function queryCustomerAuthorInfo(params) {
+      return _get("queryCustomerAuthorInfo", params);
+    };
+	
+	
 	function _post(method, params) {
 		return $http.post(SERVER + method , params ,{ headers : { "x-access-token" :$rootScope.globals.token }}).then(
 			function(res){

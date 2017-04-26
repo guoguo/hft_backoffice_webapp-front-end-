@@ -94,6 +94,32 @@ div.scrollbar a:hover {
     -webkit-flex: 2;
     -moz-flex: 2;
     -o-flex: 2;
+	width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -o-flex;
+    flex-flow: column;
+    flex-flow: -webkit-column;
+    flex-flow: -moz-column;
+    flex-flow: -o-column;
+}
+.bkd-m01{
+	width:100%;
+	margin:0 auto;
+	flex: 2;
+    -webkit-flex: 2;
+    -moz-flex: 2;
+    -o-flex: 2;
+	width: 100%;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -o-flex;
+    flex-flow: column;
+    flex-flow: -webkit-column;
+    flex-flow: -moz-column;
+    flex-flow: -o-column;
 }
 .bkd-dn{
 	width:50%;
@@ -200,4 +226,91 @@ div.scrollbar a:hover {
 	-webkit-flex-flow:column;
 	-moz-flex-flow:column;
 	-o-flex-flow:column;
+}
+.my-dialog{
+	position:absolute;
+	top:10%;
+	left:50%;
+	width:400px;
+	background:#fff;
+	border-radius:10px;
+	min-height:100px;
+	z-index:111;
+	margin-left:-200px;
+	display:none;
+}
+.my-dialog-title{
+	width:100%;
+	height:5rem;
+	text-align:center;
+	line-height:5rem;
+	font-size:1.5rem;
+	font-weight:bold;
+}
+.my-dialog-span{
+	width:60%;
+	height:3rem;
+	line-height:3rem;
+	margin:0 auto;
+	overflow:hidden;
+}
+.my-dialog-img{
+	width:90%;
+	margin:0 auto;
+}
+.my-dialog-img span{
+	width:100%;
+	height:2rem;
+	line-height:2rem;
+	display:block;
+}
+.my-dialog-img img{
+	width:100%;
+	display:block;
+}
+.my-dialog-cz{
+	width:100%;
+	height:5rem;
+	line-height:5rem;
+	display:flex;
+	display:-webkit-flex;
+	display:-moz-flex;
+	display:-o-flex;
+}
+.my-dialog-cz .update {
+    border-radius: 1rem;
+    border: 1px solid #ff5a5f;
+    color: #ff5a5f;
+	height: 3rem;
+    display: block;
+    flex: 1;
+    -webkit-flex: 1;
+    -moz-flex: 1;
+    -o-flex: 1;
+    margin-left: 10px;
+    margin-top: 1rem;
+    text-align: center;
+    line-height: 3rem;
+}
+.my-dialog-cz .submit  {
+    background: #00cc99;
+    color: #fff;
+    border-radius: 1rem;
+	height: 3rem;
+    display: block;
+    flex: 1;
+    -webkit-flex: 1;
+    -moz-flex: 1;
+    -o-flex: 1;
+    margin-left: 10px;
+    margin-top: 1rem;
+    text-align: center;
+    line-height: 3rem;
+	margin-right: 10px;
+}
+.my-dialog-img textarea{
+	width:100%;
+	height:5rem;
+	display:block;
+	border:0px;
 }

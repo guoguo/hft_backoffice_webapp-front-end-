@@ -10,11 +10,11 @@
     .factory('PublicService', PublicService);
 
     PublicService.$inject = ['$http', '$cookies', '$rootScope'];
-    function PublicService($http, $cookies, $rootScope) {
+    function PublicService($http, $cookies, $rootScope,baseInfo) {
 		var testFlag = "test";
 		let service = {};
 
-		let SERVER = 'http://192.168.0.211:8091/';
+		let SERVER = baseInfo.baseUrl;
 
 		service.debug = true;
 		service.GetMarket = GetMarket;

@@ -5,11 +5,11 @@
         .module('app')
         .factory('AuthenticationService', AuthenticationService);
 
-    AuthenticationService.$inject = ['$http', '$cookies', '$rootScope', '$timeout', 'UserService'];
-    function AuthenticationService($http, $cookies, $rootScope, $timeout, UserService) {
+    AuthenticationService.$inject = ['$http', '$cookies', '$rootScope', '$timeout', 'UserService','baseInfo'];
+    function AuthenticationService($http, $cookies, $rootScope, $timeout, UserService,baseInfo) {
       var service = {};
 
-      let SERVER = 'http://127.0.0.1:8070/';
+      let SERVER = baseInfo.tokenUrl;
 
         service.debug = true;
         service.Login = Login;

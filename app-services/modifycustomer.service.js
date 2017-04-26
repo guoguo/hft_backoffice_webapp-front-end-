@@ -2,10 +2,10 @@
   'use strict';
   angular.module('app').factory('ModifyCustomerService', ModifyCustomerService);
 
-  function ModifyCustomerService($http,$rootScope) {
+  function ModifyCustomerService($http,$rootScope,baseInfo) {
     var service = {};
 
-    let SERVER = 'http://127.0.0.1:8060/';
+    let SERVER = baseInfo.baseUrl;
 
     service.debug = true;
     service.queryCustomerUserById = queryCustomerUserById;

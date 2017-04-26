@@ -31,7 +31,6 @@
 		//查询某个用户信息
 		function queryCustomerUserById(queryparams){
 			ModifyCustomerService.queryCustomerUserById(queryparams).then((response) =>{
-				console.log(response);
 				if(response.success){
 					$scope.params.id = response.data[0].id;
 					$scope.params.created_at = response.data[0].created_at;
@@ -54,11 +53,11 @@
 				phone:$scope.params.phone,
 				email:$scope.params.email
 			}
-			if($scope.params.vip_level==""){
+			if($scope.params.vip_level==undefined){
 				Util.dialog("请输入用户等级");
-			}else if($scope.params.phone==""){
+			}else if($scope.params.phone==undefined){
 				Util.dialog("请输入电话");
-			}else if($scope.params.email==""){
+			}else if($scope.params.email==undefined){
 				Util.dialog("请输入邮箱");
 			}else{
 				ModifyCustomerService.modifyCustomerUser(data).then((response) =>{

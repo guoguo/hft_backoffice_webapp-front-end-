@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
     //let myapp = angular.module('myapp', ["highcharts-ng"]);
-  angular.module('app', ['ui.router', 'ngCookies', 'ngMockE2E','pascalprecht.translate','ngMessages'])
+   angular.module('app', ['ui.router', 'ngCookies', 'ngMockE2E','pascalprecht.translate','ngMessages'])
     .config(config).config(function ($translateProvider) {
             $translateProvider.useStaticFilesLoader({
               prefix: 'lang/',
@@ -16,8 +16,7 @@
             $translateProvider.useSanitizeValueStrategy('escapeParameters');
 
            	$translateProvider.preferredLanguage('en-US');
-		}).run(run);
-
+		}).run(run).constant('baseInfo',{'baseUrl':'http://192.168.0.211:8060/','tokenUrl':'http://192.168.0.211:8070/'});
     config.$inject = ['$stateProvider','$urlRouterProvider'];
 	
     function config($stateProvider, $urlRouterProvider) {

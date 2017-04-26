@@ -38,8 +38,8 @@
 					$scope.params.asset_type = response.data[0].asset_type;
 					$scope.params.is_currency = response.data[0].is_currency;
 					$scope.params.leval = response.data[0].leval;
-					$scope.params.simgle_limit = response.data[0].simgle_limit;
-					$scope.params.accumulate_limit = response.data[0].accumulate_limit;
+					$scope.params.simgle_limit = response.data[0].simgle_limit/10000000;
+					$scope.params.accumulate_limit = response.data[0].accumulate_limit/10000000;
 				}else{
 					Util.dialog("没有查到相关数据!");
 				}

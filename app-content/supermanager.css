@@ -108,6 +108,7 @@ html,body{
 .page-m{
 	width:100%;
 	height: 4rem;
+	color:#000;
 }
 .page-m-p-all{
 	width:100px;
@@ -196,7 +197,7 @@ html,body{
 	float:left;
 }
 .s-h-up-l-c02-t .last-login{
-	width:18%;
+	width:15%;
 	height:5rem;
 	line-height:5rem;
 	float:left;
@@ -247,13 +248,13 @@ html,body{
 	float:left;
 }
 .s-h-up-l-c02-li .last-login{
-	width:18%;
+	width:15%;
 	height:3rem;
 	line-height:3rem;
 	float:left;
 }
 .s-h-up-l-c02-li .s-h-c-z{
-	width:15%;
+	width:25%;
 	height:3rem;
 	line-height:3rem;
 	position: relative;

@@ -2,10 +2,10 @@
   'use strict';
   angular.module('app').factory('AdminService', AdminService);
 
-  function AdminService($http,$rootScope) {
+  function AdminService($http,$rootScope,baseInfo) {
     var service = {};
-
-    let SERVER = 'http://127.0.0.1:8060/';
+	
+    let SERVER = baseInfo.baseUrl;
 
     service.debug = true;
     service.getRoleInfo = getRoleInfo;

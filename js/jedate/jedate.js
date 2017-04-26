@@ -220,7 +220,7 @@
             if (!QD(Cell)[0]) {
                 dateDiv.className = dateDiv.id = Cell.replace("#", "");
                 dateDiv.style.zIndex = opts.zIndex;
-                doc.body.appendChild(dateDiv);
+                doc.querySelector('.s-home').appendChild(dateDiv);
             }
             try {
                 target = even.target || even.srcElement || {};

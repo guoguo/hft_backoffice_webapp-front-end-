@@ -5,10 +5,10 @@
     .factory('PrivateService', PrivateService);
 
   PrivateService.$inject = ['$http', '$cookies', '$rootScope'];
-  function PrivateService($http, $cookies, $rootScope) {
+  function PrivateService($http, $cookies, $rootScope,baseInfo) {
     let service = {};
 
-    let SERVER = 'http://192.168.3.168:8090/';
+    let SERVER = baseInfo.baseUrl;
 
     service.debug = true;
     service.Balances = Balances;

@@ -55,7 +55,7 @@
 							<div class="department">{{item.DEPARTMENT}}</div>
 							<div class="last-login">{{item.LAST_LOGIN_DATETIME}}</div>
 							<div class="s-h-c-z">
-								<a class="update">修改</a>
+								<!--<a class="update">修改</a>-->
 								<a class="frozen" ng-if="item.status===0" ng-click="frozen(item.uid,$index,0,'user')">冻结</a>
 								<a class="unfrozen" ng-if="item.status===1" ng-click="frozen(item.uid,$index,2,'user')">解冻</a>
 								<a ng-click="frozen(item.uid,$index,1)">注销</a>

@@ -15,6 +15,7 @@
 			mytask:[],
 			mybanktask:[],
 			mycointask:[],
+			idcardtask:[],
 			dialogMes:"",
 			symbol:0,
 			uid:0,
@@ -61,6 +62,7 @@
 			queryData(params);
 			queryLoginInfo(0,10);
 			queryUsers(0,10);
+			queryIdCardTask({});
 		})();
 		
 		//点击查询
@@ -115,6 +117,7 @@
 				queryBankTask(params);
 			});
 		};
+		
 		function queryData(){
 			//查询同步查询数据
 			MyTaskService.queryData(params).then((response) => {
@@ -129,7 +132,6 @@
 		function queryCoinBankTask(params){
 			//查询数字货币充提任务
 			MyTaskService.queryCoinBankTask(params).then((response) => {
-				console.log(response)
 				if(response.success){
 					$scope.params.mycointask = response.data;
 					$scope.mytaskcoinMiddle = $scope.params.mycointask;
@@ -142,12 +144,8 @@
 		function queryCoinBankTaskWith(params){
 			//查询数字货币提币任务
 			MyTaskService.queryCoinBankTask(params).then((response) => {
-				//leval
-				
 				if(response.success){
-					console.log($scope.params.mycointask)
 					$scope.params.mycointask = $scope.params.mycointask.concat(response.data);
-					
 					$scope.mytaskcoinMiddle = $scope.mytaskcoinMiddle.concat(response.data);
 					params.is_currencys = 'DEPOSIT';
 				}
@@ -156,8 +154,6 @@
 		function queryBankTask(params){
 			//查询我的人民币充提任务
 			MyTaskService.queryBankTask(params).then((response) => {
-				//console.log(response)
-				//leval
 				if(response.success){
 					$scope.params.mytask = response.data;
 					$scope.params.mybanktask = response.data;
@@ -165,6 +161,16 @@
 					$scope.mytaskMiddle = $scope.params.mytask;
 					params.is_currency = 'WITHDRAWAL';
 					queryBankTaskWithdrawal(params);
+				}
+			});
+		};
+		
+		function queryIdCardTask(params){
+			//查询身份认证任务
+			MyTaskService.queryIdCardTask(params).then((response) => {
+				console.log(response)
+				if(response.success){
+					$scope.params.idcardtask = response.data;
 				}
 			});
 		};
@@ -240,6 +246,74 @@
 			}
 		};
 		
+		//点击查看
+		$scope.queryAuthor = function(user_id,id,index){
+			$scope.params.index = index;
+			params.id = id;
+			params.user_id = user_id;
+			showAndHideDl('show');
+			MyTaskService.queryCustomerAuthorInfo(params).then((response) => {
+				$scope.params.authorInfo = {};
+				if(response.success){
+					var data = response.data;
+					for(var i=0;i<data.length;i++){
+						var item = data[i];
+						$scope.params.authorInfo.name = item.name;
+						$scope.params.authorInfo.id_type = item.id_type;
+						$scope.params.authorInfo.id_no = item.id_no;
+						$scope.params.authorInfo.level = item.level;
+						$scope.params.authorInfo.user_id = item.user_id;
+						$scope.params.authorInfo.remark = item.remark;
+						if(item.type=='back'){
+							$scope.params.authorInfo.back = item.source
+						}else if(item.type=='frand'){
+							$scope.params.authorInfo.frand = item.source
+						}else if(item.type=='face'){
+							$scope.params.authorInfo.face = item.source
+						}
+					}
+				}else{
+					$scope.params.errMsg="查询身份认证信息失败";
+					$scope.params.errSymbol=true;
+					setTimeHide();
+				}
+			});
+		};
+		
+		//不通过身份审核
+		$scope.notPass = function(){
+			params.remark = $scope.params.authorInfo.remark;
+			MyTaskService.deleteCustomerAuthorInfo(params).then((response) => {
+				showAndHideDl('hide');
+				if(response.success){
+					var index = $scope.params.index;
+					$scope.params.errMsg="拒绝身份认证成功";
+					$scope.params.idcardtask.splice(index,1);
+				}else{
+					$scope.params.errMsg="拒绝身份认证失败";
+				}
+				$scope.params.errSymbol=true;
+				setTimeHide();
+			});
+		};
+		
+		//通过身份审核
+		$scope.adopt = function(){
+			params.remark = $scope.params.authorInfo.remark;
+			MyTaskService.updateCustomerAuthorInfo(params).then((response) => {
+				showAndHideDl('hide');
+				if(response.success){
+					var index = $scope.params.index;
+					$scope.params.errMsg="身份认证成功";
+					$scope.params.idcardtask.splice(index,1);
+				}else{
+					$scope.params.errMsg="身份认证失败";
+				}
+				$scope.params.errSymbol=true;
+				setTimeHide();
+			});
+		};
+				
 		//查询用户信息
 		function queryCustomerInfo(user_id){
 			BankDepositService.queryCustomerInfo(user_id).then((response) => {
@@ -255,15 +329,13 @@
 						$scope.params.userinfoFlag = false;
 						$scope.params.errMsg="没查到用户信息!";
 						$scope.params.errSymbol=true;
-						setTimeHide();
-						$scope.params.mytask = [];
-						$scope.mytaskMiddle = [];
+						
 					}
 				}
 			});
 		};
 		
-		$scope.nowPage = 1;
+		$scope.nowPage = 0;
 		$scope.mytasknowPage = 1;
 		$scope.params.allcount = 0;
 		$scope.params.mytaskallcount = 0;
@@ -325,20 +397,32 @@
 			}else if(type=="mytask"){
 				$scope.mytaskleftPages = [];
 			}
-			if(row==1 && count<4){
-				for(var i=1;i<count;i++){
+			if(row==0 && count<4){
+				for(var i=1;i<=count;i++){
 					$scope.leftPages.push(i);
 				}
-			}else if(row==1 && 4<=count){
-				for(var i=1;i<4;i++){
+			}else if(row==0 && 4<=count){
+				for(var i=1;i<=4;i++){
 					$scope.leftPages.push(i);
 				}
 			}else if(row==count && 4<=count){
 				for(var i=(count-2);i<=count;i++){
 					$scope.leftPages.push(i);
 				}
-			}else if(row!=1 && row!=count && 4<=count){
-				for(var i=(row-1);i<(row+2);i++){
+			}else if(row!=0 && row!=count && 4<=count){
+				for(var i=(row-1);i<=(row+2);i++){
+					$scope.leftPages.push(i);
+				}
+			}else if(row!=0 && row==count && 4<=count){
+				for(var i=(row-1);i<=(row+2);i++){
+					$scope.leftPages.push(i);
+				}
+			}else if(row!=0 && row!=count && count<4){
+				for(var i=1;i<=count;i++){
+					$scope.leftPages.push(i);
+				}
+			}else if(row!=0 && row==count && count<4){
+				for(var i=1;i<=count;i++){
 					$scope.leftPages.push(i);
 				}
 			}
@@ -399,10 +483,32 @@
 			$scope.rejectData.asset_type=asset_type;
 		};
 		//异常
-		$scope.abnormal = function(){
+		$scope.abnormal = function(bank_transfer_id,system_status,customer_user_id,is_currency,amount,index,asset_type){
 			showAndHide("show");
 			$scope.params.symbol = 10;
-			$scope.params.dialogMes = "您确定将该操作加入异常吗？"
+			$scope.params.index = index;
+			$scope.params.dialogMes = "您确定异常该操作吗？"
+			$scope.rejectData.bank_transfer_id=bank_transfer_id;
+			$scope.rejectData.system_status=-3;
+			$scope.rejectData.customer_user_id=customer_user_id;
+			$scope.rejectData.amount=amount;
+			$scope.rejectData.is_currency=is_currency;
+			$scope.rejectData.asset_type=asset_type;
+			$scope.params.coinflag = false;
+		};
+		//数字货币异常
+		$scope.abnormalCoin = function(bank_transfer_id,system_status,customer_user_id,is_currency,amount,index,asset_type){
+			showAndHide("show");
+			$scope.params.symbol = 10;
+			$scope.params.index = index;
+			$scope.params.dialogMes = "您确定异常该操作吗？"
+			$scope.rejectData.bank_transfer_id=bank_transfer_id;
+			$scope.rejectData.system_status=-3;
+			$scope.rejectData.customer_user_id=customer_user_id;
+			$scope.rejectData.amount=amount;
+			$scope.rejectData.is_currency=is_currency;
+			$scope.rejectData.asset_type=asset_type;
+			$scope.params.coinflag = true;
 		};
 		//提交数字货币上级
 		$scope.goCoinUpstairs = function(bank_transfer_id,system_status,customer_user_id,amount,is_currency,show_user_status,leval,index,asset_type){
@@ -434,7 +540,6 @@
 			$scope.params.symbol = 11;
 			$scope.params.dialogMes = "您确定提交该操作吗？"
 			$scope.goUpdtariParam.leval=leval;
-			console.log($scope.goUpdtariParam.leval)
 			$scope.goUpdtariParam.bank_transfer_id=bank_transfer_id;
 			$scope.goUpdtariParam.system_status=system_status+1;
 			$scope.goUpdtariParam.method=method;
@@ -476,6 +581,28 @@
 				hide.style.display = "none";
 				dialog.style.display = "none";
 			}
+		};
+		
+		//显示隐藏
+		function showAndHideDl(type){
+			var hide = document.querySelector(".hide");
+			var dialog = document.querySelector(".my-dialog");
+			if(type=="show"){
+				hide.style.display = "block";
+				dialog.style.display = "block";
+			}else{
+				hide.style.display = "none";
+				dialog.style.display = "none";
+			}
+		};
+		
+		$scope.hideMethod = function(){
+			var hide = document.querySelector(".hide");
+			var mydialog = document.querySelector(".my-dialog");
+			var dialog = document.querySelector(".dialog");
+			hide.style.display = "none";
+			dialog.style.display = "none";
+			mydialog.style.display = "none";
 		};
 		
 		//取消按钮
@@ -538,7 +665,7 @@
 						if(response.success){
 							var index = $scope.params.index;
 							$scope.params.errMsg="拒绝成功";
-							$scope.params.mycointask[index].assign_role_id = $scope.symbol;
+							$scope.params.mycointask[index].assign_role_id =  parseInt($scope.symbol);
 							$scope.params.mycointask[index].show_user_status=-1;
 						}else{
 							$scope.params.errMsg="拒绝失败";
@@ -551,10 +678,39 @@
 						if(response.success){
 							var index = $scope.params.index;
 							$scope.params.errMsg="拒绝成功";
-							$scope.params.mytask[index].assign_role_id = $scope.symbol;
+							$scope.params.mytask[index].assign_role_id = parseInt($scope.symbol);
 							$scope.params.mytask[index].show_user_status=-1;
 						}else{
 							$scope.params.errMsg="拒绝失败";
+						}
+						$scope.params.errSymbol=true;
+						setTimeHide();
+					});
+				}	
+			//异常
+			}else if($scope.params.symbol==10){
+				if($scope.params.coinflag){
+					MyTaskService.rejectCoinFun($scope.rejectData).then((response) => {
+						if(response.success){
+							var index = $scope.params.index;
+							$scope.params.errMsg="加入异常成功";
+							$scope.params.mycointask[index].assign_role_id =  parseInt($scope.symbol);
+							$scope.params.mycointask[index].show_user_status=-1;
+						}else{
+							$scope.params.errMsg="加入异常失败";
+						}
+						$scope.params.errSymbol=true;
+						setTimeHide();
+					});
+				}else{
+					MyTaskService.rejectFun($scope.rejectData).then((response) => {
+						if(response.success){
+							var index = $scope.params.index;
+							$scope.params.errMsg="加入异常成功";
+							$scope.params.mytask[index].assign_role_id = parseInt($scope.symbol);
+							$scope.params.mytask[index].show_user_status=-1;
+						}else{
+							$scope.params.errMsg="加入异常失败";
 						}
 						$scope.params.errSymbol=true;
 						setTimeHide();
@@ -564,7 +720,6 @@
 			}else if($scope.params.symbol==11){
 				if($scope.params.coinflag){
 					MyTaskService.goCoinUpstairs($scope.goUpdtariParam).then((response) => {
-						
 						if(response.success){
 							var index = $scope.params.index;
 							Util.dialog("提交上级成功");
@@ -582,7 +737,6 @@
 					});
 				}else{
 					MyTaskService.goUpstairs($scope.goUpdtariParam).then((response) => {
-						console.log(response)
 						if(response.success){
 							var index = $scope.params.index;
 							Util.dialog("提交上级成功");
@@ -594,6 +748,8 @@
 							}
 						}else if(response.message=='ERR_IS_LITTLE'){
 							Util.dialog("该笔数据属于小额自动充值！");
+						}else if(response.message='ERR_AMOUNT_EXCCED_FAIL'){
+							Util.dialog("充值额度超过单笔提现额度，请拒绝!");
 						}else{
 							Util.dialog("提交上级失败");
 						}

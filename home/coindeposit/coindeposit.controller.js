@@ -80,6 +80,10 @@
 					if(response.success){
 						$scope.params.mytasks = response.data;
 						$scope.mytaskMiddle = $scope.params.mytasks;
+						if(response.data.length!=0){
+							$scope.params.allcount= Math.ceil($scope.params.mytasks[0].count/10);
+							pagesFunction($scope.nowPage,$scope.params.allcount,'login');
+						}
 					}
 				});
 			}else{
@@ -88,6 +92,10 @@
 					if(response.success){
 						$scope.params.mytasks = response.data;
 						$scope.mytaskMiddle = $scope.params.mytasks;
+						if(response.data.length!=0){
+							$scope.params.allcount= Math.ceil($scope.params.mytasks[0].count/10);
+							pagesFunction($scope.nowPage,$scope.params.allcount,'login');
+						}
 					}
 				});
 			}
@@ -179,16 +187,6 @@
 			});
 		};
 		
-		//查询我的人民币充提任务
-		function queryBankTask(params){
-			MyTaskService.queryBankTask(params).then((response) => {
-				console.log(response);
-				if(response.success){
-					$scope.params.mytasks = response.data;
-					$scope.mytaskMiddle = $scope.params.mytasks;
-				}
-			});
-		};
 		
 		//判断是否是当前自己可以操作的数据
 		$scope.isSelf = function(show_status,role_symbol){
@@ -300,6 +298,81 @@
 				});
 			}
 			showAndHide("hide");
+		};
+		
+		$scope.nowPage = 0;
+		$scope.mytasknowPage = 1;
+		$scope.params.allcount = 0;
+		$scope.leftPages = [1,2,3];
+		$scope.mytaskleftPages = [1,2,3];
+		//首页
+		$scope.prev = function(type){
+			if(type=='login'){
+				if($scope.nowPage!=0){
+					$scope.nowPage = 0;
+				}
+				params.row = $scope.nowPage;
+				params.count = 10;
+				queryCoinBankTaskDetail(params);
+			}
+		};
+		
+		//尾页
+		$scope.next = function(type){
+			if(type=='login'){
+				if($scope.nowPage!=$scope.params.allcount){
+					$scope.nowPage = $scope.params.allcount-1;
+				}
+				params.row = $scope.nowPage;
+				params.count = 10;
+				queryCoinBankTaskDetail(params);
+			}
+		};
+		//点击当前页
+		$scope.page = function(e,row,type){
+			$(e.target).addClass("pages-Chosee");
+			$(e.target).siblings().removeClass("pages-Chosee");
+			if(type=='login'){
+				params.row = row-1;
+				params.count = 10;
+				$scope.nowPage = row;
+				queryCoinBankTaskDetail(params);
+			}
+		};
+		
+		//分页算法
+		function pagesFunction(row,count,type){
+			$scope.leftPages = [];
+			if(row==0 && count<4){
+				for(var i=1;i<=count;i++){
+					$scope.leftPages.push(i);
+				}
+			}else if(row==0 && 4<=count){
+				for(var i=1;i<=4;i++){
+					$scope.leftPages.push(i);
+				}
+			}else if(row==count && 4<=count){
+				for(var i=(count-2);i<=count;i++){
+					$scope.leftPages.push(i);
+				}
+			}else if(row!=0 && row!=count && 4<=count){
+				for(var i=(row-1);i<=(row+2);i++){
+					$scope.leftPages.push(i);
+				}
+			}else if(row!=0 && row==count && 4<=count){
+				for(var i=(row-1);i<=(row+2);i++){
+					$scope.leftPages.push(i);
+				}
+			}else if(row!=0 && row!=count && count<4){
+				for(var i=1;i<=count;i++){
+					$scope.leftPages.push(i);
+				}
+			}else if(row!=0 && row==count && count<4){
+				for(var i=1;i<=count;i++){
+					$scope.leftPages.push(i);
+				}
+			}
+			
 		};
     }
 })();

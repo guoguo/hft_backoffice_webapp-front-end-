@@ -38,6 +38,7 @@
 		//各种查询请求数句
 		var params = {
 			is_currency:'DEPOSIT',
+			asset_type:'BTC',
 			row:0,
 			count:10
 		};
@@ -52,12 +53,29 @@
 				'customer_user_id':$stateParams.user_id
 			};
 			queryCustomerInfo(userparams);
-			var transferparams ={
-				'transfer_id':$stateParams.tranfer_id,
-				'is_currency':$stateParams.is_currency
-			};
-			queryByTransferId(transferparams);
 		})();
+		
+		//查询我的人民币充提任务
+		function queryCoinDeposit(params){
+			params.customer_user_id = $scope.params.userInfo.id
+			MyTaskService.queryCoinDeposit(params).then((response) => {
+				if(response.success){
+					$scope.params.mytask = response.data;
+					$scope.mytaskMiddle = $scope.params.mytask;
+				}
+			});
+		};
+		
+		//点击查询
+		$scope.queryTask = function(e,type){
+			var target = e.target;
+			$(target).addClass('bk-t-msaCh');
+			$(target).siblings().removeClass('bk-t-msaCh');
+			params.is_currency = type;
+			queryCoinDeposit(params);
+		};
+		
+		
 		
 		//查询用户信息
 		function queryCustomerInfo(user_id){
@@ -67,12 +85,18 @@
 					if(response.data.length!=0){
 						$scope.params.userinfoFlag = true;
 						$scope.params.userInfo = response.data[0];
+						
 					}else{
 						$scope.params.userinfoFlag = false;
 						$scope.params.errMsg="没查到用户信息!";
 						$scope.params.errSymbol=true;
 						setTimeHide();
 					}
+					var transferparams ={
+						'transfer_id':$stateParams.tranfer_id,
+						'is_currency':$stateParams.is_currency
+					};
+					queryByTransferId(transferparams);
 				}
 			});
 		};
@@ -82,6 +106,9 @@
 				console.log(response);
 				if(response.success){
 					$scope.params.tranferInfo = response.data;
+					params.asset_type = $scope.params.tranferInfo.asset_type;
+					queryCoinDeposit(params);
+					
 				}
 			});
 		};

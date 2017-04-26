@@ -42,8 +42,8 @@
 					$scope.params.description = response.data.description;
 					$scope.params.asset_type = response.data.asset_type;
 					$scope.params.is_currency = response.data.is_currency;
-					$scope.params.single_limit = response.data.single_limit;
-					$scope.params.accumulate_limit = response.data.accumulate_limit;
+					$scope.params.single_limit = response.data.single_limit/10000000;
+					$scope.params.accumulate_limit = response.data.accumulate_limit/10000000;
 				}else{
 					Util.dialog("没有查到相关数据!");
 				}

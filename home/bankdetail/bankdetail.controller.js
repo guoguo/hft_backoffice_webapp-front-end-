@@ -40,7 +40,7 @@
 		var params = {
 			is_currency:'DEPOSIT',
 			row:0,
-			count:10
+			count:1000
 		};
 		
 		//初始化查询
@@ -59,7 +59,25 @@
 			queryByTransferId(transferparams);
 		})();
 		
+		//查询我的人民币充提任务
+		function queryBankTask(params){
+			params.customer_user_id = $scope.params.userInfo.id
+			MyTaskService.queryDeposit(params).then((response) => {
+				if(response.success){
+					$scope.params.mytask = response.data;
+					$scope.mytaskMiddle = $scope.params.mytask;
+				}
+			});
+		};
 		
+		//点击查询
+		$scope.queryTask = function(e,type){
+			var target = e.target;
+			$(target).addClass('bk-t-msaCh');
+			$(target).siblings().removeClass('bk-t-msaCh');
+			params.is_currency = type;
+			queryBankTask(params);
+		};
 		
 		
 		//查询用户信息
@@ -81,10 +99,10 @@
 		
 		function queryByTransferId(tranferparam){
 			BankDetailService.queryByTransferId(tranferparam).then((response) => {
-				console.log(response);
 				if(response.success){
 					$scope.params.tranferInfo = response.data;
 				}
+				queryBankTask(params);
 			});
 		};
 		

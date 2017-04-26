@@ -1,4 +1,4 @@
-<div class="s-home bkd-m">
+<div class="bkd-m">
 	<div class="d-p-up">
 		<div class="d-p-rs" ng-show="params.userinfoFlag">
 			<div class="d-p-rs-t">
@@ -88,7 +88,62 @@
 		</div>
 	</div>
 </div>
-	
+<div class="bkd-m01">
+		<div class="s-h-down">
+			<div class="s-h-down-l">
+				<h1>数字货币充值和提现列表</h1>
+				<div class="s-h-down-l-c"> 
+					<div class="s-h-up-l-c01">
+						<div class="bk-t-ms">
+							<a ng-click="queryTask($event,'DEPOSIT')" class="bk-t-msaCh">充值</a>
+							<a ng-click="queryTask($event,'WIDTHDRAWAL')">提现</a>
+							<a ng-click="queryTask($event,-1)">锁仓</a>
+						</div>
+						<!--<div class="bk-t-tm">
+							<input type="text" id="starttime" readonly placeholder="开始时间" />
+							<div class="circle"></div>
+							<input type="text" id="endtime" readonly placeholder="结束时间"/>
+							<a ng-click="startClick()">确定</a>
+						</div>-->
+					</div>
+					<div class="s-h-down-l-c02 down">
+						<div class="s-h-up-l-c02-t">
+							<div class="bk-tra">交易id</div>
+							<div class="last-login">时间</div>
+							<div class="last-login">任务类型</div>
+							<div class="mobile">总数量</div>
+							<div class="telephone">当前节点</div>
+							<div class="bk-tra">状态</div>
+							<div class="bk-tra">账户类型</div>
+						</div>
+						<ul>
+							<li class="s-h-up-l-c02-li" ng-repeat="item in params.mytask">
+								<div class="bk-tra01">{{item.bank_transfer_id}}</div>
+								<div class="last-login">{{item.create_time | date:"yyyy-MM-dd hh:mm:ss"}}</div>
+								<div class="last-login" ng-if="item.is_currency==='DEPOSIT'">UID  {{item.customer_user_id}} - 充值</div>
+								<div class="last-login" ng-if="item.is_currency==='WITHDRAWAL'">UID  {{item.customer_user_id}} - 提现</div>
+								<div class="mobile">{{item.amount}}</div>
+								<div class="telephone" ng-if="item.assign_role_id===3">管理员</div>
+								<div class="telephone" ng-if="item.assign_role_id===2">一级主管</div>
+								<div class="telephone" ng-if="item.assign_role_id===1">二级主管</div>
+								<div class="telephone" ng-if="item.assign_role_id===0">普通操作员</div>
+								<div class="telephone" ng-if="item.assign_role_id===-1">自动充值</div>
+								<div class="bk-tra01" ng-if="item.show_user_status===0">已成功</div>
+								<div class="bk-tra01 cal" ng-if="item.show_user_status===-1">已拒绝</div>
+								<div class="bk-tra01 progress" ng-if="item.show_user_status===1">进行中</div>
+								<div class="bk-tra01">人民币</div>
+								<div class="s-h-c-z" ng-show="isSelf(item.show_user_status,item.assign_role_id)">
+									<a class="update" ng-show="params.rejectFlag"  ng-click="reject(item.bank_transfer_id,item.system_status,$index)">拒绝</a>
+									<a class="update" ng-click="abnormal()">异常</a>
+									<a class="submit" ng-click="goUpstairs(item.bank_transfer_id,item.system_status,item.customer_user_id,item.amount,item.is_currency,item.show_user_status,item.leval,$index,item.method)">提交</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="dialog">
 		<div class="title">{{params.dialogMes}}</div>
 		<div class="dialog-c">

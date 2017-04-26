@@ -32,13 +32,14 @@
 									<div class="telephone" ng-if="item.assign_role_id===2">一级主管</div>
 									<div class="telephone" ng-if="item.assign_role_id===1">二级主管</div>
 									<div class="telephone" ng-if="item.assign_role_id===0">普通操作员</div>
+									<div class="telephone" ng-if="item.assign_role_id===-1">自动充值</div>
 									<div class="email" ng-if="item.show_user_status===0">已成功</div>
 									<div class="email cal" ng-if="item.show_user_status===-1">已拒绝</div>
 									<div class="email progress" ng-if="item.show_user_status===1">进行中</div>
 								</a>
 								<div class="s-h-c-z" ng-show="isSelf(item.show_user_status,item.assign_role_id)">
 									<a class="update" ng-show="params.rejectFlag"  ng-click="reject(item.bank_transfer_id,item.system_status,item.customer_user_id,item.is_currency,item.amount,$index)">拒绝</a>
-									<a class="update" ng-click="abnormal()">异常</a>
+									<a class="update" ng-click="abnormal(item.bank_transfer_id,item.system_status,item.customer_user_id,item.is_currency,item.amount,$index)">异常</a>
 									<a class="submit" ng-click="goUpstairs(item.bank_transfer_id,item.system_status,item.customer_user_id,item.amount,item.is_currency,item.show_user_status,item.leval,$index,item.method)">提交</a>
 								</div>
 							</li>
@@ -59,11 +60,28 @@
 								</a>
 								<div class="s-h-c-z" ng-show="isSelf(item.show_user_status,item.assign_role_id)">
 									<a class="update" ng-show="params.rejectFlag"  ng-click="rejectCoin(item.transefer_id,item.system_status,item.customer_user_id,item.is_currency,item.amount,$index,item.asset_type)">拒绝</a>
-									<a class="update" ng-click="abnormal()">异常</a>
+									<a class="update" ng-click="abnormalCoin(item.transefer_id,item.system_status,item.customer_user_id,item.is_currency,item.amount,$index,item.asset_type)">异常</a>
 									<a class="submit" ng-click="goCoinUpstairs(item.transefer_id,item.system_status,item.customer_user_id,item.amount,item.is_currency,item.show_user_status,item.leval,$index,item.asset_type)">提交</a>
 								</div>
 							</li>
-							
+							<li class="s-h-up-l-c02-li" ng-repeat="item in params.idcardtask track by $index">
+								<!--<a href="#!/home/bankdetail/{{item.customer_user_id}}/{{item.bank_transfer_id}}" class="s-h-item">-->
+								<a ng-click="itemCoinDetail(item.customer_user_id,item.is_currency,item.transefer_id)" class="s-h-item">
+									<div class="last-login">{{item.created_at | date:"yyyy-MM-dd hh:mm:ss"}}</div>
+									<div class="last-login">UID  {{item.user_id}} - {{item.id_type}}</div>
+									<div class="mobile">无</div>
+									<div class="telephone" ng-if="symbol==3">管理员</div>
+									<div class="telephone" ng-if="symbol==2">一级主管</div>
+									<div class="telephone" ng-if="symbol==1">二级主管</div>
+									<div class="telephone" ng-if="symbol==0">普通操作员</div>
+									<div class="email" ng-if="item.status===0">进行中</div>
+									<div class="email cal" ng-if="item.status===-1">认证未通过</div>
+									<div class="email progress" ng-if="item.status===1">认证已通过</div>
+								</a>
+								<div class="s-h-c-z">
+									<a class="submit" ng-click="queryAuthor(item.user_id,item.id,$index)">查看</a>
+								</div>
+							</li>
 						</ul>
 					</div>
 					<div class="page-m">
@@ -229,7 +247,7 @@
 								<div class="department">{{item.DEPARTMENT}}</div>
 								<div class="last-login">{{item.LAST_LOGIN_DATETIME}}</div>
 								<div class="s-h-c-z">
-									<a class="update">修改</a>
+									<!--<a class="update">修改</a>-->
 									<a class="frozen" ng-if="item.status===0" ng-click="frozen(item.uid,$index,0,'user')">冻结</a>
 									<a class="unfrozen" ng-if="item.status===1" ng-click="frozen(item.uid,$index,2,'user')">解冻</a>
 									<a ng-click="frozen(item.uid,$index,1)">注销</a>
@@ -242,6 +260,46 @@
 		</div>
 	</div>
 	
+	<div class="my-dialog">
+		<div class="my-dialog-title">
+			身份认证审核
+		</div>
+		<div class="my-dialog-span">
+			姓名：{{params.authorInfo.name}}
+		</div>
+		<div class="my-dialog-span">
+			UID:{{params.authorInfo.user_id}}
+		</div>
+		<div class="my-dialog-span">
+			证件类型:{{params.authorInfo.id_type}}
+		</div>
+		<div class="my-dialog-span">
+			证件号码:{{params.authorInfo.id_no}}
+		</div>
+		<div class="my-dialog-span">
+			用户等级:{{params.authorInfo.level}}
+		</div>
+		<div class="my-dialog-img">
+			<span>正面照</span>
+			<img src="params.authorInfo.frand"/>
+		</div>
+		<div class="my-dialog-img">
+			<span>反面照</span>
+			<img src="params.authorInfo.back"/>
+		</div>
+		<div class="my-dialog-img">
+			<span>手持照</span>
+			<img src="params.authorInfo.face"/>
+		</div>
+		<div class="my-dialog-img">
+			<span>备注</span>
+			<textarea ng-model="params.authorInfo.remark"></textarea>
+		</div>
+		<div class="my-dialog-cz">
+			<a class="update" ng-click="notPass()">不通过</a>
+			<a class="submit" ng-click="adopt()">通过</a>
+		</div>
+	</div>
 	<div class="dialog">
 		<div class="title">{{params.dialogMes}}</div>
 		<div class="dialog-c">
@@ -253,7 +311,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="hide">
+	<div class="hide" ng-click="hideMethod()">
 	</div>
 	<div class="err-mess" ng-show="params.errSymbol">{{params.errMsg}}</div>
 	
