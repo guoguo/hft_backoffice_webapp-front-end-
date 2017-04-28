@@ -11,6 +11,9 @@
     service.queryDpWdByUid = queryDpWdByUid;
     service.modifyDepositAndWithdrawals = modifyDepositAndWithdrawals;
     service.addDepositAndWithdrawals = addDepositAndWithdrawals;
+    service.queryWholeSaleById = queryWholeSaleById;
+    service.modifyWholeSale = modifyWholeSale;
+    service.addWholeSale = addWholeSale;
     service.SERVER = SERVER;
     return service;
 	
@@ -27,6 +30,21 @@
     //修改某条充提
     function modifyDepositAndWithdrawals(params) {
       return _post("modifyDepositAndWithdrawals", params);
+    }
+	
+	//查询某条大小额
+    function queryWholeSaleById(params) {
+      return _get("queryWholeSaleById", params);
+    }
+	
+	//修改某条大小额
+    function modifyWholeSale(params) {
+      return _post("modifyWholeSale", params);
+    }
+	
+	//添加某条大小额
+    function addWholeSale(params) {
+      return _post("addWholeSale", params);
     }
 	
 	function _post(method, params) {

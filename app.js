@@ -224,7 +224,20 @@
         controller: 'ModifyCustomerController',
         templateUrl: 'home/modifycustomer/modifycustomer.view.html',
         controllerAs: 'vm'
+      })
+	  .state('home.configwholesale', {
+        url:'/configwholesale',
+        controller: 'ConfigWholesaleController',
+        templateUrl: 'home/configwholesale/configwholesale.view.html',
+        controllerAs: 'vm'
+      })
+	  .state('home.modifywholesale', {
+        url:'/modifywholesale/:id/:asset_type/:is_currency',
+        controller: 'ModifyWholeSaleController',
+        templateUrl: 'home/modifywholesale/modifywholesale.view.html',
+        controllerAs: 'vm'
       });
+	 
 		
 	  
       $urlRouterProvider.otherwise('/login');

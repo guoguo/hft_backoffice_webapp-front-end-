@@ -11,6 +11,7 @@
 
     service.queryDepositAndWithdrawalsAll = queryDepositAndWithdrawalsAll;
     service.queryDepositAndWithdrawalsById = queryDepositAndWithdrawalsById;
+    service.queryWholeSale = queryWholeSale;
 
     service.SERVER = SERVER;
 
@@ -24,6 +25,11 @@
 	//根据用户id查询充提限额
     function queryDepositAndWithdrawalsById(params) {
       return _get("queryDepositAndWithdrawals", params);
+    };
+	
+	//查询大小额
+	function queryWholeSale(params) {
+      return _get("queryWholeSale", params);
     };
 	
 	function _post(method, params) {

@@ -729,6 +729,8 @@
 								$scope.params.mycointask[index].system_status=3;
 								$scope.params.mycointask[index].show_user_status=0;
 							}
+						}else if(response.message=='ERR_IS_LITTLE'){
+							Util.dialog("该笔数据属于小额自动充值！");
 						}else if(response.message='ERR_AMOUNT_EXCCED_FAIL'){
 							Util.dialog("提现额度超过单笔额度，请拒绝!");
 						}else if(response.message='ERR_AMOUNT_ACCUMULATE_LIMIT_FAIL'){

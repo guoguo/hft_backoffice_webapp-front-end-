@@ -1,0 +1,42 @@
+<div class="s-home">
+	<div class="d-p-up">
+		<div class="d-p-p01">
+			<input type="text" placeholder="请输入id" ng-model="params.id" /><img src="./img/search.png" ng-click="search()"/>
+		</div>
+	</div>
+	<div class="s-h-down">
+		<div class="s-h-down-l">
+			<h1><a class="s-h-down-lau" href="#!/home/config">默认充提限额列表</a><a class="s-h-down-lau" href="#!/home/configcustome">用户充提限额列表</a><a>大小额设置</a></h1>
+			<div class="s-h-down-l-c"> 
+				<div class="s-h-up-l-c01">
+					<div class="bk-t-ms a-u-cz">
+						<a href="#!/home/modifywholesale/id/bank/DEPOSIT">新增大小额</a>
+					</div>
+				</div>
+				<div class="s-h-down-l-c02 down">
+					<div class="s-h-up-l-c02-t">
+						<div class="bk-tra">id</div>
+						<div class="last-login">描述</div>
+						<div class="last-login">充提类型</div>
+						<div class="mobile">限额</div>
+						<div class="bk-tra">账户类型</div>
+					</div>
+					<ul>
+						<li class="s-h-up-l-c02-li" ng-repeat="item in params.allData">
+							<div class="bk-tra01">{{item.id}}</div>
+							<div class="last-login">{{item.desc}}</div>
+							<div class="last-login" ng-if="item.is_currency==='DEPOSIT'">充值</div>
+							<div class="last-login" ng-if="item.is_currency==='WITHDRAWAL'">提现</div>
+							<div class="mobile">{{item.wholesale_threshold/10000000}}</div>
+							<div class="bk-tra01">{{item.asset_type}}</div>
+							<div class="s-h-c-z" style="width:15%;">
+								<a class="update" href="#!/home/modifywholesale/{{item.id}}/{{item.asset_type}}/{{item.is_currency}}">修改</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	
