@@ -10,6 +10,9 @@
 							<a ng-click="queryTask($event,-1)">已拒绝</a>
 							<a ng-click="queryTask($event,1)">进行中</a>
 						</div>
+						<span class="s-h-up-r-c01-t" ng-click="addposition()">
+							手动加仓
+						</span>
 					</div>
 					<div class="s-h-up-l-c02">
 						<div class="s-h-up-l-c02-t">
@@ -68,7 +71,7 @@
 								<!--<a href="#!/home/bankdetail/{{item.customer_user_id}}/{{item.bank_transfer_id}}" class="s-h-item">-->
 								<a ng-click="itemCoinDetail(item.customer_user_id,item.is_currency,item.transefer_id)" class="s-h-item">
 									<div class="last-login">{{item.created_at | date:"yyyy-MM-dd hh:mm:ss"}}</div>
-									<div class="last-login">UID  {{item.user_id}} - {{item.id_type}}</div>
+									<div class="last-login">UID  {{item.user_id}} -认证- {{item.id_type}}</div>
 									<div class="mobile">无</div>
 									<div class="telephone" ng-if="symbol==3">管理员</div>
 									<div class="telephone" ng-if="symbol==2">一级主管</div>
@@ -300,6 +303,33 @@
 			<a class="submit" ng-click="adopt()">通过</a>
 		</div>
 	</div>
+	
+	<div id="my-dialogs" class="my-dialogs">
+		<div class="my-dialog-title">
+			手动加仓
+		</div>
+		<div class="my-dialog-img">
+			<span>UID</span>
+			<input type="text" ng-model="params.addpisoion.user_id"/>
+		</div>
+		<div class="my-dialog-img">
+			<span>账户类型</span>
+			<input type="text" ng-model="params.addpisoion.asset"/>
+		</div>
+		<div class="my-dialog-img">
+			<span>重提类型</span>
+			<input type="text" ng-model="params.addpisoion.is_currency"/>
+		</div>
+		<div class="my-dialog-img">
+			<span>金额</span>
+			<input type="text" ng-model="params.addpisoion.amount"/>
+		</div>
+		<div class="my-dialog-cz">
+			<a class="update" ng-click="addpositionCl()">取消</a>
+			<a class="submit" ng-click="addpositionSure()">确定</a>
+		</div>
+	</div>
+	
 	<div class="dialog">
 		<div class="title">{{params.dialogMes}}</div>
 		<div class="dialog-c">

@@ -23,6 +23,7 @@
     service.deleteCustomerAuthorInfo = deleteCustomerAuthorInfo;
     service.updateCustomerAuthorInfo = updateCustomerAuthorInfo;
     service.queryCustomerAuthorInfo = queryCustomerAuthorInfo;
+    service.addPosition = addPosition;
 
     service.SERVER = SERVER;
 
@@ -97,6 +98,10 @@
       return _get("queryCustomerAuthorInfo", params);
     };
 	
+	//手动加持仓
+    function addPosition(params) {
+      return _post("addPosition", params);
+    };
 	
 	function _post(method, params) {
 		return $http.post(SERVER + method , params ,{ headers : { "x-access-token" :$rootScope.globals.token }}).then(

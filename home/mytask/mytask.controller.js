@@ -44,6 +44,9 @@
 			system_status:1
 		};
 		
+		//手动加仓
+		$scope.addpisoion={};
+		
 		var params = {
 				is_currency:'DEPOSIT',
 				transfer_type:'DEPOSIT',
@@ -251,7 +254,7 @@
 			$scope.params.index = index;
 			params.id = id;
 			params.user_id = user_id;
-			showAndHideDl('show');
+			showAndHideDl('show','my-dialog');
 			MyTaskService.queryCustomerAuthorInfo(params).then((response) => {
 				$scope.params.authorInfo = {};
 				if(response.success){
@@ -280,11 +283,35 @@
 			});
 		};
 		
+		//点击手动加仓
+		$scope.addposition = function(){
+			showAndHideDl('show','my-dialogs');
+		};
+		
+		//取消手动加仓
+		$scope.addpositionCl = function(){
+			showAndHideDl('hide','my-dialogs');
+		};
+		
+		//确定手动加仓
+		$scope.addpositionSure = function(){
+			MyTaskService.addPosition($scope.params.addpisoion).then((response) => {
+				showAndHideDl('hide','my-dialogs');
+				if(response.success){
+					$scope.params.errMsg="确定手动加仓成功";
+				}else{
+					$scope.params.errMsg="确定手动加仓失败";
+				}
+				$scope.params.errSymbol=true;
+				setTimeHide();
+			});
+		};
+		
 		//不通过身份审核
 		$scope.notPass = function(){
 			params.remark = $scope.params.authorInfo.remark;
 			MyTaskService.deleteCustomerAuthorInfo(params).then((response) => {
-				showAndHideDl('hide');
+				showAndHideDl('hide','my-dialog');
 				if(response.success){
 					var index = $scope.params.index;
 					$scope.params.errMsg="拒绝身份认证成功";
@@ -301,7 +328,7 @@
 		$scope.adopt = function(){
 			params.remark = $scope.params.authorInfo.remark;
 			MyTaskService.updateCustomerAuthorInfo(params).then((response) => {
-				showAndHideDl('hide');
+				showAndHideDl('hide','my-dialog');
 				if(response.success){
 					var index = $scope.params.index;
 					$scope.params.errMsg="身份认证成功";
@@ -584,9 +611,9 @@
 		};
 		
 		//显示隐藏
-		function showAndHideDl(type){
+		function showAndHideDl(type,el){
 			var hide = document.querySelector(".hide");
-			var dialog = document.querySelector(".my-dialog");
+			var dialog = document.querySelector("."+el);
 			if(type=="show"){
 				hide.style.display = "block";
 				dialog.style.display = "block";
@@ -599,10 +626,12 @@
 		$scope.hideMethod = function(){
 			var hide = document.querySelector(".hide");
 			var mydialog = document.querySelector(".my-dialog");
+			var mydialogs= document.querySelector(".my-dialogs");
 			var dialog = document.querySelector(".dialog");
 			hide.style.display = "none";
 			dialog.style.display = "none";
 			mydialog.style.display = "none";
+			mydialogs.style.display = "none";
 		};
 		
 		//取消按钮

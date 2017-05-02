@@ -239,6 +239,19 @@ div.scrollbar a:hover {
 	margin-left:-200px;
 	display:none;
 }
+.my-dialogs{
+	position:absolute;
+	top:10%;
+	left:50%;
+	width:400px;
+	background:#fff;
+	border-radius:10px;
+	min-height:100px;
+	z-index:111;
+	margin-left:-200px;
+	display:none;
+}
+
 .my-dialog-title{
 	width:100%;
 	height:5rem;
@@ -263,6 +276,14 @@ div.scrollbar a:hover {
 	height:2rem;
 	line-height:2rem;
 	display:block;
+}
+.my-dialogs input{
+	width:100%;
+	height:3rem;
+	line-height:3rem;
+	display:block;
+	border:1px solid #eee;
+	border-radius:5px;
 }
 .my-dialog-img img{
 	width:100%;
